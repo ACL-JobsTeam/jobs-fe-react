@@ -1,18 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Welcome from '../../containers/WelcomePage/Welcome';
-import Search from '../../containers/SearchPage/Search';
+import Register from '../../containers/Registration/Register';
+import Login from '../../containers/Login/Login';
+import Search from '../../containers/Search/Search';
 import Dashboard from '../../containers/Dashboard/Dashboard';
-import Details from '../../containers/DetailPage/Details';
+import Detail from '../../containers/Detail/Detail';
 
 export default function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path={'/'} component={Welcome} />
+        <Route exact path={'/'} component={Login} />
+        <Route exact path={'/register'} component={Register} />
         <Route exact path={'/search'} component={Search} />
         <Route exact path={'/dashboard'} component={Dashboard} />
-        <Route exact path={'/details/:id'} component={Details} />
+        <Route exact path={'/details/:id'} component={Detail} />
       </Switch>
     </Router>
   );
