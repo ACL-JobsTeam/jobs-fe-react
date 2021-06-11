@@ -17,7 +17,6 @@
   display: flex;
   width: 120px;
   height: 50px;
-  padding-left: 12px;
   margin: 10px;
   justify-content: center;
   align-items: center;
@@ -28,9 +27,16 @@
   font-weight: bold;
 }
 
+input[type='radio'] {
+  display: none;
+}
+
 .Lyft {
   background-color: hotpink;
   color: white;
+}
+.Lyft:hover {
+  transform: scale(1.2, 1.1);
 }
 
 .Airbnb {
@@ -38,9 +44,17 @@
   color: white;
 }
 
+.Airbnb:hover {
+  transform: scale(1.2, 1.1);
+}
+
 .Stripe {
   background-color: rgb(45, 92, 221);
   color: white;
+}
+
+.Stripe:hover {
+  transform: scale(1.2, 1.1);
 }
 
 .Twitch {
@@ -48,9 +62,17 @@
   color: white;
 }
 
+.Twitch:hover {
+  transform: scale(1.2, 1.1);
+}
+
 .Coinbase {
   background-color: rgb(0, 102, 255);
   color: white;
+}
+
+.Coinbase:hover {
+  transform: scale(1.2, 1.1);
 }
 
 .Discord {
@@ -58,9 +80,17 @@
   color: white;
 }
 
+.Discord:hover {
+  transform: scale(1.2, 1.1);
+}
+
 .Github {
   background-color: black;
   color: white;
+}
+
+.Github:hover {
+  transform: scale(1.2, 1.1);
 }
 
 .Reddit {
@@ -68,9 +98,17 @@
   color: white;
 }
 
+.Reddit:hover {
+  transform: scale(1.2, 1.1);
+}
+
 .Strava {
   background-color: rgb(202, 27, 27);
   color: white;
+}
+
+.Strava:hover {
+  transform: scale(1.2, 1.1);
 }
 
 .Glassdoor {
@@ -78,9 +116,17 @@
   color: white;
 }
 
+.Glassdoor:hover {
+  transform: scale(1.2, 1.1);
+}
+
 .Netlify {
   background-color: rgb(27, 143, 172);
   color: white;
+}
+
+.Netlify:hover {
+  transform: scale(1.2, 1.1);
 }
 
 .Robinhood {
@@ -88,9 +134,17 @@
   color: white;
 }
 
+.Robinhood:hover {
+  transform: scale(1.2, 1.1);
+}
+
 .Doordash {
   background-color: tomato;
   color: white;
+}
+
+.Doordash:hover {
+  transform: scale(1.2, 1.1);
 }
 
 .input-section {
