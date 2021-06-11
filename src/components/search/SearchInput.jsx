@@ -71,16 +71,16 @@ const SearchInput = () => {
   ];
   return (
     <div className="search-header">
-      <section className="company-section">
+      <form className="company-section">
         {companies.map((company) => (
           <label key={company.name} className={company.name}>
             {company.name}
-            <input type="checkbox" value={company.name} />
+            <input type="radio" value={company.name} />
           </label>
         ))}
-      </section>
+      </form>
       <section className="input-section">
-        <input type="text" />
+        <input type="text" placeholder="filter job titles" />
       </section>
     </div>
   );
