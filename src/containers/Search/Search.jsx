@@ -1,10 +1,11 @@
 import React from 'react';
+import SearchComponent from '../../components/search/SearchComponent';
 
 const Search = () => {
   return (
-    <>
-      <p>This is the Search Page!</p>
-    </>
+    <div>
+      <SearchComponent />
+    </div>
   );
 };
 
