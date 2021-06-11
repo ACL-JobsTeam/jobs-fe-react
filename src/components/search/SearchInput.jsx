@@ -75,7 +75,12 @@ const SearchInput = () => {
         {companies.map((company) => (
           <label key={company.name} className={company.name}>
             {company.name}
-            <input type="radio" value={company.name} />
+            <input
+              type="radio"
+              id={company.name}
+              value={company.name}
+              name="companies"
+            />
           </label>
         ))}
       </form>

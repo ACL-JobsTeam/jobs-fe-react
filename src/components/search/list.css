@@ -28,10 +28,6 @@
   font-weight: bold;
 }
 
-input[type='radio'] {
-  visibility: hidden;
-}
-
 .Lyft {
   background-color: hotpink;
   color: white;
