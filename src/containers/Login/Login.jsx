@@ -1,31 +1,32 @@
 import React, {useState} from 'react';
-import { Redirect } from 'react-router';
+import {Redirect} from 'react-router-dom';
 
 const Login = () => {
-
-const [username, setUsername] = useState('')
-const [password, setPassword] = useState('')
 const [redirect, setRedirect] = useState(false)
+const [password, setPassword] = useState('')
+const [username, setUsername] = useState('')
+
+
 
 const submit = async (e) => {
   e.preventDefault()
 
-   await fetch('http://localhost:7890/api/v1/auth/login', {
+     await fetch('http://localhost:7890/api/v1/auth/login', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
+    credentials: 'include',
     body: JSON.stringify({
       username,
       password
     })
-  })
 
+  })
   setRedirect(true)
 }
-if(redirect) {
-  return <Redirect to={'/'} /> }
 
-
- 
+if (redirect) {
+  return <Redirect to='/dashboard' />
+}
 
   return (
     <>
