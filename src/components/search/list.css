@@ -1,0 +1,161 @@
+.search-header {
+  display: flex;
+  height: 200px;
+  flex-direction: column;
+}
+
+.company-section {
+  display: flex;
+  width: 84%;
+  height: 100px;
+  justify-content: space-around;
+  align-self: center;
+  align-items: center;
+}
+
+.company-section label {
+  display: flex;
+  width: 120px;
+  height: 50px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 8px 8px 8px grey;
+  border-radius: 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.Lyft {
+  background-color: hotpink;
+  color: white;
+}
+.Lyft:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Airbnb {
+  background-color: rgb(233, 31, 31);
+  color: white;
+}
+
+.Airbnb:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Stripe {
+  background-color: rgb(45, 92, 221);
+  color: white;
+}
+
+.Stripe:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Twitch {
+  background-color: rgb(143, 2, 236);
+  color: white;
+}
+
+.Twitch:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Coinbase {
+  background-color: rgb(0, 102, 255);
+  color: white;
+}
+
+.Coinbase:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Discord {
+  background-color: rgb(91, 91, 235);
+  color: white;
+}
+
+.Discord:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Github {
+  background-color: black;
+  color: white;
+}
+
+.Github:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Reddit {
+  background-color: red;
+  color: white;
+}
+
+.Reddit:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Strava {
+  background-color: rgb(202, 27, 27);
+  color: white;
+}
+
+.Strava:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Glassdoor {
+  background-color: yellowgreen;
+  color: white;
+}
+
+.Glassdoor:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Netlify {
+  background-color: rgb(27, 143, 172);
+  color: white;
+}
+
+.Netlify:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Robinhood {
+  background-color: rgb(56, 230, 172);
+  color: white;
+}
+
+.Robinhood:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.Doordash {
+  background-color: tomato;
+  color: white;
+}
+
+.Doordash:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.input-section {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-section input {
+  width: 300px;
+  height: 30px;
+  box-shadow: 10px 10px 10px grey;
+}
