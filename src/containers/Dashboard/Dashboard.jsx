@@ -1,16 +1,16 @@
 import React from 'react';
-import { testHook } from './actualHook';
+
 
 
 const Dashboard = () => {
-  const [user] = testHook()
+  
   
   
   
 
   return (
     <>
-      <p>The Dashboard {user} Page!</p>
+      <p>The Dashboard my name is</p>
       <p></p>
     </>
   );
