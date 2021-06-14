@@ -30,7 +30,7 @@ export default function App() {
         setUser(userdata.user.userName);
         setLoading('resolved');
       }
-      if(res.status === 401) {
+      if(res.status !== 200) {
         setLoading('rejected');
       }
       
