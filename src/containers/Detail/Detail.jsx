@@ -1,9 +1,12 @@
 import React from 'react';
 
+
 const Detail = () => {
+
+
   return (
     <>
-      <p>This is the Details Page</p>
+      <p>This is the Details Page </p>
     </>
   );
 };
