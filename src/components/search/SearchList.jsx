@@ -33,12 +33,12 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchList = ({ jobs }) => {
+const SearchList = ({ getPaginatedData }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      {jobs.map((job) => (
+      {getPaginatedData().map((job) => (
         <Card className={classes.root} key={job.id}>
           <CardActionArea>
             <CardMedia
@@ -87,6 +87,7 @@ SearchList.propTypes = {
       location: PropTypes.string.isRequired,
     })
   ).isRequired,
+  getPaginatedData: PropTypes.func.isRequired,
 };
 
 export default SearchList;

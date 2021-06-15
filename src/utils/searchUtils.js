@@ -3,7 +3,7 @@ export const fetchAllJobs = async () => {
 
   const jobData = await res.json();
 
-  console.log(jobData);
+  console.log(jobData.length);
   return jobData;
 };
 
