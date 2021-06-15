@@ -56,7 +56,7 @@ export default function App() {
         <Route exact path={'/register'} component={Register} />
         <AuthRoute path="/search" component={Search} user={user}/> 
         <AuthRoute path="/details/:id" component={Detail} user={user} />
-        <AuthRoute path="/dashboard" component={Dashboard} user={user} />
+        <Route path="/dashboard" component={Dashboard} user={user} />
         <div>401</div>
       </Switch>
     </Router>
