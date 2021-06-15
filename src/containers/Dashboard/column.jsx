@@ -1,8 +1,6 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-
-
+import AppList from './AppList';
 
 
 export default function Column({ 
@@ -44,64 +42,14 @@ export default function Column({
               <button onClick={() => handleModal(column.column_id, 'NEWAPP')}>New App</button>
             </section>
 
-            <Droppable
-              droppableId={column.column_id}
-              direction= "vertical"
-              type="app-list"
-            >
-              {(provided) => {
-                const style = {
-                  border: '1px solid purple',
-                  minHeight: '300px',
-                  ...provided.droppableProps.style,
-                };
-                return (
-                  <div
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    style={style}
-                  >
+            <AppList 
+              column={column}
+              jobs={jobs}
+              handleDeleteApp={handleDeleteApp}
+              handleModal={handleModal}
+            />
 
-                    {jobs && jobs.map((job, index) => {
-                      return (
-                        <Draggable draggableId={`${job.app_id}`} key={job.app_id} index={index}>
-                          {provided => {
-                            const style = {
-                              border: '1px solid black',
-                              height: '140px',
-                              ...provided.draggableProps.style,
-                            };
-                            return (
-                              <div 
-                                {...provided.draggableProps} 
-                                {...provided.dragHandleProps}
-                                style={style}
-                                ref={provided.innerRef} 
-                              >
-                                <button onClick={() => handleDeleteApp(job.app_id, index, column.column_id)}>delete</button>
-                                <button onClick={() => handleModal({ job, column, index }, 'APPUPDATE')}>update</button>
-                                <p>{job.app_id}</p>
-                                <p>{job.position}</p>
-                                <p>{job.company}</p>
-                                <p>{job.job_url}</p>
-
-                              </div>
-                            );
-                          }}
-                        </Draggable>
-
-                      );
-                    
-                    })}
-
-                    {!jobs && <p>---No jobs---</p>}
-
-                    {/* Required by RBDnD Library */}
-                    {provided.placeholder}
-                  </div>
-                );}}
-
-            </Droppable>
+            
 
 
 
