@@ -266,7 +266,7 @@ export default function Dashboard() {
       });
     const jsonData = await data.json();
   };
-  
+
   // Adds new application card to a swimlane. +CREDS +RESP
   const handleAddNewApp = async (colId, title, company, jobUrl) => {
 
@@ -377,8 +377,6 @@ export default function Dashboard() {
       });
     }
   };
-
-
 
   // Required DragDropContext function. 
   function onDragEnd(result) {
@@ -510,10 +508,6 @@ export default function Dashboard() {
         columnObject[column.column_id] = column; 
       });
       setcolumnsObject(columnObject);
-      console.log('0', columnObject[500].job_pos);
-      console.log('1', columnObject[501].job_pos);
-      console.log('2', columnObject[502].job_pos);
-      console.log('3', columnObject[503].job_pos);
 
       const orderedColumnIds = Array(jsonData.length).fill(null);
       jsonData
