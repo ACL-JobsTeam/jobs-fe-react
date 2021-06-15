@@ -4,15 +4,14 @@ import { fetchAllJobs } from '../../utils/searchUtils';
 
 const Search = () => {
   const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(async () => {
-    fetchAllJobs.then(setJobs).then(setLoading);
-  }, [jobs]);
+  useEffect(() => {
+    fetchAllJobs().then(setJobs);
+  }, []);
 
   return (
     <div>
-      {loading ? <span>Loading...</span> : <SearchComponent jobs={jobs} />}
+      <SearchComponent jobs={jobs} />
     </div>
   );
 };

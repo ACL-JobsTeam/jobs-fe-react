@@ -7,54 +7,53 @@ import Dashboard from '../../containers/Dashboard/Dashboard';
 import Detail from '../../containers/Detail/Detail';
 import { Redirect } from 'react-router-dom';
 
-
-
-
 export default function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState('pending');
 
-
- 
-
   function AuthRoute({ user, component: Component, path, ...props }) {
-    const fetchUser = async () => { 
+    const fetchUser = async () => {
       const res = await fetch('http://localhost:7890/api/v1/auth/getuser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
       });
-      if(res.status === 200) {
+      if (res.status === 200) {
         const userdata = await res.json();
-       
+
         setUser(userdata.user.userName);
         setLoading('resolved');
       }
-      if(res.status !== 200) {
+      if (res.status !== 200) {
         setLoading('rejected');
       }
-      
-     
-          
     };
 
     fetchUser();
-    if(!user && loading === 'rejected'){
-      return <Redirect to="/"/>;
-    } 
-    return (
-      <Route exact path={path} {...props}>
-        <Component />
-      </Route>
-    );
+    if (!user && loading === 'rejected') {
+      return <Redirect to="/" />;
+    }
+
+    if (user && loading === 'resolved') {
+      return (
+        <Route exact path={path} {...props}>
+          <Component />
+        </Route>
+      );
+    }
+    return null;
   }
 
   return (
     <Router>
       <Switch>
-        <Route exact path={'/'} render={(props) => <Login {...props} setLoading={setLoading}/>}/> 
+        <Route
+          exact
+          path={'/'}
+          render={(props) => <Login {...props} setLoading={setLoading} />}
+        />
         <Route exact path={'/register'} component={Register} />
-        <AuthRoute path="/search" component={Search} user={user}/> 
+        <AuthRoute path="/search" component={Search} user={user} />
         <AuthRoute path="/details/:id" component={Detail} user={user} />
         <AuthRoute path="/dashboard" component={Dashboard} user={user} />
         <div>401</div>
