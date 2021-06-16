@@ -1,8 +1,10 @@
 export async function fetchUserColumns() {
-  const data = await fetch('http://localhost:7890/api/v1/columns/getall', {
-    method: 'GET',
-    credentials: 'include',
-  });
+  const data = await fetch(
+    `${process.env.REACT_APP_BASE_URL}/api/v1/columns/getall`, 
+    {
+      method: 'GET',
+      credentials: 'include',
+    });
   const jsonData = await data.json();
 
   return jsonData;
@@ -10,7 +12,7 @@ export async function fetchUserColumns() {
 
 export async function fetchUserApplications() {
   const data = await fetch(
-    'http://localhost:7890/api/v1/applications/getapplications',
+    `${process.env.REACT_APP_BASE_URL}/api/v1/applications/getapplications`,
     {
       method: 'GET',
       credentials: 'include',
@@ -23,7 +25,7 @@ export async function fetchUserApplications() {
 
 export async function fetchUpdateColumnOrder(updatedColumns) {
   const postData = await fetch(
-    'http://localhost:7890/api/v1/columns/updatepositions',
+    `${process.env.REACT_APP_BASE_URL}/api/v1/columns/updatepositions`,
     {
       method: 'PUT',
       headers: {
@@ -39,7 +41,7 @@ export async function fetchUpdateColumnOrder(updatedColumns) {
 }
 
 export async function fetchHandleAddColumn(newColNameInput, columnsIdArray) {
-  const data = await fetch('http://localhost:7890/api/v1/columns/create', {
+  const data = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/columns/create`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,7 +58,7 @@ export async function fetchHandleAddColumn(newColNameInput, columnsIdArray) {
 }
 
 export async function fetchHandleDeleteColumn(columnId) {
-  const data = await fetch('http://localhost:7890/api/v1/columns/delete', {
+  const data = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/columns/delete`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ export async function fetchHandleDeleteColumn(columnId) {
 }
 
 export async function fetchHandleRenameColumn(colId, newName) {
-  const data = await fetch('http://localhost:7890/api/v1/columns/rename', {
+  const data = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/columns/rename`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -85,7 +87,7 @@ export async function fetchHandleRenameColumn(colId, newName) {
 
 export async function fetchUpdateColumnApps(newArr, colId) {
   const data = await fetch(
-    'http://localhost:7890/api/v1/applications/updatecolapplications',
+    `${process.env.REACT_APP_BASE_URL}/api/v1/applications/updatecolapplications`,
     {
       method: 'PATCH',
       headers: {
@@ -102,7 +104,7 @@ export async function fetchUpdateColumnApps(newArr, colId) {
 
 export async function fetchHandleAddNewApp(title, company, jobUrl) {
   const data = await fetch(
-    'http://localhost:7890/api/v1/applications/createnewapp',
+    `${process.env.REACT_APP_BASE_URL}/api/v1/applications/createnewapp`,
     {
       method: 'POST',
       headers: {
@@ -119,7 +121,7 @@ export async function fetchHandleAddNewApp(title, company, jobUrl) {
 
 export async function fetchHandleDeleteApp(appId){
   const data = await fetch(
-    `http://localhost:7890/api/v1/applications/deleteapp/${appId}`,
+    `${process.env.REACT_APP_BASE_URL}/api/v1/applications/deleteapp/${appId}`,
     {
       method: 'DELETE',
       credentials: 'include',
@@ -132,7 +134,7 @@ export async function fetchHandleDeleteApp(appId){
 
 export async function fetchHandleUpdateApp(appId, title, company, jobUrl) {
   const data = await fetch(
-    'http://localhost:7890/api/v1/applications/updateapp',
+    `${process.env.REACT_APP_BASE_URL}/api/v1/applications/updateapp`,
     {
       method: 'PUT',
       headers: {
