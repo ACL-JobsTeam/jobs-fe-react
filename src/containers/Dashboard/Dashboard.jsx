@@ -7,12 +7,23 @@ import {
   parseNewColumnObject,
 } from '../../utils/dashboard/dataUtils';
 import {
+  fetchHandleDeleteColumn,
+  fetchHandleAddColumn,
+  fetchUpdateColumnOrder,
   fetchUserApplications,
   fetchUserColumns,
+  fetchHandleRenameColumn,
+  fetchUpdateColumnApps,
+  fetchHandleAddNewApp,
+  fetchHandleDeleteApp,
+  fetchHandleUpdateApp,
 } from '../../utils/dashboard/fetchUtils';
 
 import ColumnsList from './ColumnsList';
 import EditorModal from './EditorModal';
+
+
+
 
 export default function Dashboard() {
   const [columnsObject, setcolumnsObject] = useState(null);
@@ -34,40 +45,18 @@ export default function Dashboard() {
 
   // Update order of all columns.  +CREDS +RESPMOD
   const updateColumnOrder = async (updatedColumns) => {
-    const postData = await fetch(
-      'http://localhost:7890/api/v1/columns/updatepositions',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ data: updatedColumns }),
-      }
-    );
-    const jsonData = await postData.json();
+    const jsonData = await fetchUpdateColumnOrder(updatedColumns);
 
-    if (jsonData.updated === Object.keys(columnsObject).length) {
+    if(jsonData.updated === Object.keys(columnsObject).length) {
       return true;
     }
   };
 
   // Add single column. +CREDS +RESP
   const handleAddColumn = async () => {
-    const data = await fetch('http://localhost:7890/api/v1/columns/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        newColName: newColNameInput,
-        colPos: columnsIdArray.length,
-      }),
-    });
-    const jsonData = await data.json();
+    const jsonData = await fetchHandleAddColumn(newColNameInput, columnsIdArray);
 
-    if (jsonData) {
+    if(jsonData) {
       const newColumn = jsonData[0];
       const { column_id } = newColumn;
 
@@ -89,18 +78,10 @@ export default function Dashboard() {
       \nApplications within the column will be permanently removed.`
     );
 
-    if (confirmDelete) {
-      const data = await fetch('http://localhost:7890/api/v1/columns/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ columnId }),
-      });
-      const jsonData = await data.json();
+    if(confirmDelete) {
+      const jsonData = await fetchHandleDeleteColumn(columnId);
 
-      if (jsonData) {
+      if(jsonData) {
         setcolumnsIdArray((prevArr) => {
           const position = prevArr.indexOf(jsonData[0].column_id);
           const copy = [...prevArr];
@@ -116,17 +97,9 @@ export default function Dashboard() {
 
   // Rename column title.  +CREDS +RESP
   const handleRenameColumn = async (colId, newName) => {
-    const data = await fetch('http://localhost:7890/api/v1/columns/rename', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({ newName, colId }),
-    });
-    const jsonData = await data.json();
+    const jsonData = await fetchHandleRenameColumn(colId, newName);
 
-    if (jsonData) {
+    if(jsonData) {
       const { name } = jsonData;
 
       setcolumnsObject((prevObj) => {
@@ -140,36 +113,16 @@ export default function Dashboard() {
 
   // Update applications array for one column. +CREDS
   const updateColumnApps = async (newArr, colId) => {
-    const data = await fetch(
-      'http://localhost:7890/api/v1/applications/updatecolapplications',
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ newArr, column: colId }),
-      }
-    );
-    const jsonData = await data.json();
+    const jsonData = await fetchUpdateColumnApps(newArr, colId);
+
+    return jsonData;
   };
 
   // Adds new application card to a swimlane. +CREDS +RESP
   const handleAddNewApp = async (colId, title, company, jobUrl) => {
-    const data = await fetch(
-      'http://localhost:7890/api/v1/applications/createnewapp',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ position: title, company, jobUrl }),
-      }
-    );
-    const jsonData = await data.json();
+    const jsonData = await fetchHandleAddNewApp(title, company, jobUrl);
 
-    if (jsonData) {
+    if(jsonData) {
       setcolumnsObject((prevObj) => {
         const destinationColumn = prevObj[colId];
 
@@ -199,16 +152,9 @@ export default function Dashboard() {
 
   // Delete application card from a swimlane. +CREDS +RESP
   const handleDeleteApp = async (appId, index, colId) => {
-    const data = await fetch(
-      `http://localhost:7890/api/v1/applications/deleteapp/${appId}`,
-      {
-        method: 'DELETE',
-        credentials: 'include',
-      }
-    );
-    const jsonData = await data.json();
+    const jsonData = await fetchHandleDeleteApp(appId);
 
-    if (jsonData) {
+    if(jsonData) {
       setcolumnsObject((prevObj) => {
         const modifiedColumn = prevObj[colId];
 
@@ -237,21 +183,9 @@ export default function Dashboard() {
 
   // Update details for an application card. +CREDS +RESP
   const handleUpdateApp = async (colId, appId, title, company, jobUrl) => {
-    const data = await fetch(
-      'http://localhost:7890/api/v1/applications/updateapp',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ appId, position: title, company, jobUrl }),
-      }
-    );
+    const jsonData = await fetchHandleUpdateApp(appId, title, company, jobUrl);
 
-    const jsonData = await data.json();
-
-    if (jsonData) {
+    if(jsonData) {
       setJobApps((prevObj) => {
         const destinationArray = prevObj[colId];
 
@@ -268,14 +202,14 @@ export default function Dashboard() {
     const { destination, source, draggableId, type } = result;
 
     // Do nothing if dropped outside droppable or in same column and same index.
-    if (
+    if(
       !destination ||
       (destination.droppableId === source.droppableId &&
         destination.index === source.index)
     )
       return;
 
-    if (type === 'column') {
+    if(type === 'column') {
       const newColumnOrder = [...columnsIdArray];
       newColumnOrder.splice(source.index, 1);
       newColumnOrder.splice(destination.index, 0, draggableId);
@@ -287,9 +221,9 @@ export default function Dashboard() {
       return;
     }
 
-    if (type === 'app-list') {
+    if(type === 'app-list') {
       // If source and destination are the same.
-      if (source.droppableId === destination.droppableId) {
+      if(source.droppableId === destination.droppableId) {
         setcolumnsObject((prevObj) => {
           const destinationColumn = prevObj[destination.droppableId];
 
@@ -326,7 +260,7 @@ export default function Dashboard() {
       }
 
       // If source and destination columns are not the same.
-      if (source.droppableId !== destination.droppableId) {
+      if(source.droppableId !== destination.droppableId) {
         setcolumnsObject((prevObj) => {
           const sourceColumn = prevObj[source.droppableId];
           const destinationColumn = prevObj[destination.droppableId];
@@ -437,7 +371,7 @@ export default function Dashboard() {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              style={{ display: 'flex', justifyContent: 'space-around' }}
+              style={{ display: 'flex', justifyContent: 'flex-start' }}
             >
               <ColumnsList
                 columnsObject={columnsObject}
