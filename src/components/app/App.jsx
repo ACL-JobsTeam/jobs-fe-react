@@ -42,11 +42,14 @@ export default function App() {
     if(!user && loading === 'rejected'){
       return <Redirect to="/"/>;
     } 
-    return (
-      <Route exact path={path} {...props}>
-        <Component />
-      </Route>
-    );
+    if(user && loading === 'resolved') {
+      return (
+        <Route exact path={path} {...props}>
+          <Component />
+        </Route>
+      );
+    }
+    return null;
   }
 
   return (
