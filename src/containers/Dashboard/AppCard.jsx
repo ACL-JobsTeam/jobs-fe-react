@@ -24,16 +24,17 @@ export default function AppCard({
             ref={provided.innerRef}
           >
             <button
-              onClick={() =>
-                handleDeleteApp(job.app_id, index, column.column_id)
-              }
+              onClick={() => handleDeleteApp(job.app_id, index, column.column_id)}
+              aria-label="Delete Application Card"
             >
-              del-app
+              - App
             </button>
+            
             <button
               onClick={() => handleModal({ job, column, index }, 'APPUPDATE')}
+              aria-label="Update Application Card"
             >
-              upd-app
+              E
             </button>
 
             <p>

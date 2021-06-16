@@ -30,19 +30,28 @@ export default function Column({
             ref={provided.innerRef}
           >
             <section>
-              <button onClick={() => handleDeleteColumn(column.column_id)}>
-                del-col
+              <button 
+                onClick={() => handleDeleteColumn(column.column_id)}
+                aria-label="Delete Column"
+              >
+                -
               </button>
-              <button onClick={() => handleModal(column, 'COLUMN')}>
-                edit-col
+              <button 
+                onClick={() => handleModal(column, 'COLUMN')}
+                aria-label="Edit Column"
+              >
+                E
               </button>
 
               <p style={{ background: snapshot.isDragging ? 'red' : 'white' }}>
                 {column.name}-{column.column_id}
               </p>
 
-              <button onClick={() => handleModal(column.column_id, 'NEWAPP')}>
-                Add Card
+              <button 
+                onClick={() => handleModal(column.column_id, 'NEWAPP')}
+                aria-label="Add Application Card"
+              >
+                + App
               </button>
             </section>
 

@@ -352,6 +352,7 @@ export default function Dashboard() {
   if(columnsObject && columnsIdArray && jobApps) {
     return (
       <DragDropContext onDragEnd={onDragEnd}>
+
         <EditorModal
           visibility={editorVis}
           setEditorVis={setEditorVis}
@@ -362,37 +363,52 @@ export default function Dashboard() {
           handleUpdateApp={handleUpdateApp}
         />
 
-        <Droppable
-          droppableId="all-columns"
-          direction="horizontal"
-          type="column"
-        >
-          {(provided) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              style={{ display: 'flex', justifyContent: 'flex-start' }}
+        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <Droppable
+            droppableId="all-columns"
+            direction="horizontal"
+            type="column"
+          >
+            {(provided) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                style={{ display: 'flex', justifyContent: 'flex-start' }}
+              >
+                <ColumnsList
+                  columnsObject={columnsObject}
+                  jobApps={jobApps}
+                  columnsIdArray={columnsIdArray}
+                  handleDeleteColumn={handleDeleteColumn}
+                  handleModal={handleModal}
+                  handleDeleteApp={handleDeleteApp}
+                />
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+
+          <section style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <label htmlFor="col-new-input">Column Name</label>
+            <br />
+            <input
+              type="text"
+              id="col-new-input"
+              name="new-col-name"
+              aria-label="New Column Input Title"
+              onChange={(e) => setnewColNameInput(e.target.value)}
+            />
+            <br />
+            <button 
+              onClick={handleAddColumn}
+              aria-label="Add Column"
             >
-              <ColumnsList
-                columnsObject={columnsObject}
-                jobApps={jobApps}
-                columnsIdArray={columnsIdArray}
-                handleDeleteColumn={handleDeleteColumn}
-                handleModal={handleModal}
-                handleDeleteApp={handleDeleteApp}
-              />
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-        <label htmlFor="col-new-input">Column Name</label>
-        <input
-          type="text"
-          id="col-new-input"
-          name="new-col-name"
-          onChange={(e) => setnewColNameInput(e.target.value)}
-        />
-        <button onClick={handleAddColumn}>ADD COLUMN</button>
+                ADD COLUMN
+            </button>
+          </section>
+
+        </div>
+
       </DragDropContext>
     );
   }
