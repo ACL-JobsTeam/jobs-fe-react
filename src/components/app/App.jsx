@@ -13,11 +13,14 @@ export default function App() {
 
   function AuthRoute({ user, component: Component, path, ...props }) {
     const fetchUser = async () => {
-      const res = await fetch('http://localhost:7890/api/v1/auth/getuser', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/v1/auth/getuser`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+        }
+      );
       if (res.status === 200) {
         const userdata = await res.json();
 
@@ -33,7 +36,6 @@ export default function App() {
     if (!user && loading === 'rejected') {
       return <Redirect to="/" />;
     }
-
     if (user && loading === 'resolved') {
       return (
         <Route exact path={path} {...props}>

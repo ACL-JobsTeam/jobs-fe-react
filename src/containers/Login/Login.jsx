@@ -13,7 +13,7 @@ const Login = ({ setLoading }) => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const user = await fetch('http://localhost:7890/api/v1/auth/login', {
+    const user = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

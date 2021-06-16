@@ -33,7 +33,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchList = ({ getPaginatedData, searchTerm }) => {
+const SearchList = ({ getPaginatedData }) => {
   const classes = useStyles();
 
   return (
