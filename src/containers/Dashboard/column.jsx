@@ -2,16 +2,14 @@ import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import AppList from './AppList';
 
-
-export default function Column({ 
-  column, 
-  index, 
-  jobs, 
-  handleDeleteColumn, 
+export default function Column({
+  column,
+  index,
+  jobs,
+  handleDeleteColumn,
   handleDeleteApp,
-  handleModal
+  handleModal,
 }) {
-
   return (
     <Draggable draggableId={`${column.column_id}`} index={index}>
       {(provided, snapshot) => {
@@ -25,40 +23,38 @@ export default function Column({
           ...provided.draggableProps.style,
         };
         return (
-          <div 
-            {...provided.draggableProps} 
+          <div
+            {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={style}
-            ref={provided.innerRef} 
+            ref={provided.innerRef}
           >
             <section>
-              <button onClick={() => handleDeleteColumn(column.column_id)}>del-col</button>
-              <button onClick={() => handleModal(column, 'COLUMN')}>edit-col</button>
-              
+              <button onClick={() => handleDeleteColumn(column.column_id)}>
+                del-col
+              </button>
+              <button onClick={() => handleModal(column, 'COLUMN')}>
+                edit-col
+              </button>
+
               <p style={{ background: snapshot.isDragging ? 'red' : 'white' }}>
                 {column.name}-{column.column_id}
               </p>
 
-              <button onClick={() => handleModal(column.column_id, 'NEWAPP')}>New App</button>
+              <button onClick={() => handleModal(column.column_id, 'NEWAPP')}>
+                Add Card
+              </button>
             </section>
 
-            <AppList 
+            <AppList
               column={column}
               jobs={jobs}
               handleDeleteApp={handleDeleteApp}
               handleModal={handleModal}
             />
-
-            
-
-
-
-
-            
           </div>
         );
       }}
     </Draggable>
   );
-  
 }
