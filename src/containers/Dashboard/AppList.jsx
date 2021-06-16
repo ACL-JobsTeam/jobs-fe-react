@@ -28,6 +28,7 @@ export default function AppList({ column, jobs, handleDeleteApp, handleModal }) 
                   key={job.app_id}
                   job={job}
                   index={index}
+                  column={column}
                   handleDeleteApp={handleDeleteApp}
                   handleModal={handleModal}
                 />

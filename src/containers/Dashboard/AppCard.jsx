@@ -1,7 +1,7 @@
 import React from 'react';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Draggable } from 'react-beautiful-dnd';
 
-export default function AppCard({ job, index, handleDeleteApp, handleModal  }){
+export default function AppCard({ job, index, column, handleDeleteApp, handleModal  }){
   return (
     <Draggable draggableId={`${job.app_id}`} key={job.app_id} index={index}>
       {provided => {
@@ -17,12 +17,31 @@ export default function AppCard({ job, index, handleDeleteApp, handleModal  }){
             style={style}
             ref={provided.innerRef} 
           >
-            <button onClick={() => handleDeleteApp(job.app_id, index, column.column_id)}>delete</button>
-            <button onClick={() => handleModal({ job, column, index }, 'APPUPDATE')}>update</button>
-            <p>{job.app_id}</p>
-            <p>{job.position}</p>
+            <button 
+              onClick={() => handleDeleteApp(
+                job.app_id, index, column.column_id
+              )}
+            >
+              del-app
+            </button>
+            <button 
+              onClick={() => handleModal(
+                { job, column, index }, 'APPUPDATE'
+              )}
+            >
+              upd-app
+            </button>
+
+            <p>{job.app_id}-{job.position}</p>
             <p>{job.company}</p>
-            <p>{job.job_url}</p>
+            <p>
+              <a href={job.job_url} 
+                target="_blank" 
+                rel="noreferrer"
+              >
+                {job.job_url}
+              </a>
+            </p>
 
           </div>
         );

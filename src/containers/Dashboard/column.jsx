@@ -32,8 +32,8 @@ export default function Column({
             ref={provided.innerRef} 
           >
             <section>
-              <button onClick={() => handleDeleteColumn(column.column_id)}>del col</button>
-              <button onClick={() => handleModal(column, 'COLUMN')}>edit Col</button>
+              <button onClick={() => handleDeleteColumn(column.column_id)}>del-col</button>
+              <button onClick={() => handleModal(column, 'COLUMN')}>edit-col</button>
               
               <p style={{ background: snapshot.isDragging ? 'red' : 'white' }}>
                 {column.name}-{column.column_id}
