@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     backgroundColor: 'whitesmoke',
     margin: '25px',
     boxShadow: '10px 10px 10px 10px grey',
+    textDecoration: 'none',
   },
   container: {
     width: '100%',
@@ -26,10 +27,12 @@ const useStyles = makeStyles({
     gridTemplateColumns: '450px 450px 450px',
     gridTemplateRows: '450px 450px 450px',
     justifyContent: 'space-evenly',
+    textDecoration: 'none',
   },
   content: {
-    height: '100px',
+    height: '70px',
     overflow: 'hidden',
+    textDecoration: 'none',
   },
 });
 
@@ -40,31 +43,33 @@ const SearchList = ({ getPaginatedData }) => {
     <div className={classes.container}>
       {getPaginatedData().map((job) => (
         <Card className={classes.root} key={job.id}>
-          <a href={job.url}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                alt="job listing"
-                height="140"
-                image={imageFinder(job.company)}
-                title="Job Listing"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h3">
-                  {job.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                  className={classes.content}
-                >
-                  this is a job description. Job content needs to be added to
-                  db.
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </a>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="job listing"
+              height="140"
+              image={imageFinder(job.company)}
+              title="Job Listing"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h3"
+                className={classes.content}
+              >
+                {job.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                className={classes.content}
+              >
+                {job.location}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
           <CardActions>
             <Button size="small" color="primary">
               save
