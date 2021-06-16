@@ -36,7 +36,7 @@ const ContactList = ({ contacts, setContacts }) => {
       credentials: 'include'
     });
     const deletedJson = await deleted.json();
-    console.log(deletedJson);
+   
 
     if(deletedJson) {
       setContacts(prevArray => {
@@ -84,7 +84,7 @@ const ContactList = ({ contacts, setContacts }) => {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      contact: PropTypes.string.isRequired,
+      contact: PropTypes.string,
       id: PropTypes.string.isRequired,
     })
   )

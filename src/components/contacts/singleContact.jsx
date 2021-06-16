@@ -3,28 +3,15 @@ import PropTypes from 'prop-types';
 
 
 const SingleContact = ({ companyContact, id, index, handleDeleteContact }) => {
-
-  
-  
-
-
-
+ 
   return (
     <>
-    
-    
-    
-      
       <div key={id}>
-          
-        {companyContact} - {id}
+        {companyContact} 
       </div>
       <button onClick={() => handleDeleteContact(id, index)}>delete</button>
-      
-      
     </>
   );};
-
 
 SingleContact.propTypes = {
   index: PropTypes.number.isRequired,
