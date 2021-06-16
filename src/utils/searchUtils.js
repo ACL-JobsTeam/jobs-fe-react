@@ -8,7 +8,8 @@ export const fetchAllJobs = async () => {
 };
 
 export const fetchJobsByCompany = async (company) => {
-  const res = await fetch(`${process.env.API_BASE_URL}/jobs/${company}`);
+  console.log(company);
+  const res = await fetch(`http://localhost:7890/api/v1/jobs/${company}`);
 
   const companyJobData = await res.json();
 

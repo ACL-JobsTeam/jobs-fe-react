@@ -1,74 +1,67 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import './list.css';
 
-const SearchInput = () => {
+const useStyles = makeStyles(() => ({
+  root: {
+    '& > *': {
+      marginLeft: '500px',
+      marginTop: '3vh',
+      width: '70ch',
+      display: 'flex',
+      justifyContent: 'center',
+      boxShadow: '10px 10px 10px grey',
+    },
+  },
+}));
+
+const SearchInput = ({ companyFilter, handleSearchTerm, searchSubmit }) => {
   const companies = [
     {
-      name: 'Lyft',
-      color: '#F91E81',
-      image: '../../assets/lyft.jpeg',
+      name: 'lyft',
     },
     {
-      name: 'Airbnb',
-      color: '#F91E81',
-      image: '../../assets/airbnb.jpeg',
+      name: 'airbnb',
     },
     {
-      name: 'Stripe',
-      color: '#F91E81',
-      image: '../../assets/stripe.png',
+      name: 'stripe',
     },
     {
-      name: 'Twitch',
-      color: '#F91E81',
-      image: '../../assets/twitch.png',
+      name: 'twitch',
     },
     {
-      name: 'Coinbase',
-      color: '#F91E81',
-      image: '../../assets/coinbase.png',
+      name: 'coinbase',
     },
     {
-      name: 'Discord',
-      color: '#F91E81',
-      image: '../../assets/discord.png',
+      name: 'discord',
     },
     {
-      name: 'Github',
-      color: '#F91E81',
-      image: '../../assets/github.jpeg',
+      name: 'github',
     },
     {
-      name: 'Reddit',
-      color: '#F91E81',
-      image: '../../assets/reddit.png',
+      name: 'reddit',
     },
     {
-      name: 'Strava',
-      color: '#F91E81',
-      image: '../../assets/strava.png',
+      name: 'strava',
     },
     {
-      name: 'Glassdoor',
-      color: '#F91E81',
-      image: '../../assets/glassdoor.png',
+      name: 'glassdoor',
     },
     {
-      name: 'Netlify',
-      color: '#F91E81',
-      image: '../../assets/netlify.png',
+      name: 'netlify',
     },
     {
-      name: 'Robinhood',
-      color: '#F91E81',
-      image: '../../assets/robinhood.png',
+      name: 'robinhood',
     },
     {
-      name: 'Doordash',
-      color: '#F91E81',
-      image: '../../assets/doordash.png',
+      name: 'doordash',
     },
   ];
+
+  const classes = useStyles();
+
   return (
     <div className="search-header">
       <form className="company-section">
@@ -80,15 +73,36 @@ const SearchInput = () => {
               id={company.name}
               value={company.name}
               name="companies"
+              onClick={(e) => companyFilter(e)}
             />
           </label>
         ))}
       </form>
-      <section className="input-section">
-        <input type="text" placeholder="filter job titles" />
-      </section>
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={searchSubmit}
+      >
+        <TextField
+          id="outlined-basic"
+          label="Enter a Job Title"
+          variant="outlined"
+          onChange={(e) => handleSearchTerm(e)}
+        />
+        <button type="submit" value="Submit">
+          search
+        </button>
+      </form>
     </div>
   );
+};
+
+SearchInput.propTypes = {
+  companyFilter: PropTypes.func.isRequired,
+  selectedCompany: PropTypes.string.isRequired,
+  handleSearchTerm: PropTypes.func.isRequired,
+  searchSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchInput;

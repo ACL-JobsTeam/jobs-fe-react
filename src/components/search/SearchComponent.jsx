@@ -10,19 +10,51 @@ const SearchComponent = ({
   getPageGroup,
   changePage,
   getPaginatedData,
+  companyFilter,
+  selectedCompany,
+  currentPage,
+  pages,
+  handleSearchTerm,
+  searchTerm,
+  searchSubmit,
 }) => {
   return (
     <div className="search-component">
-      <SearchInput />
-      <SearchList jobs={jobs} getPaginatedData={getPaginatedData} />
+      <SearchInput
+        companyFilter={companyFilter}
+        selectedCompany={selectedCompany}
+        handleSearchTerm={handleSearchTerm}
+        searchSubmit={searchSubmit}
+      />
+      <SearchList
+        jobs={jobs}
+        getPaginatedData={getPaginatedData}
+        searchTerm={searchTerm}
+      />
       <section className="pagination">
-        <button onClick={previous}>previous</button>
-        {getPageGroup().map((page, index) => (
-          <button key={index} onClick={changePage}>
-            <span>{page}</span>
+        <button
+          onClick={previous}
+          className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
+        >
+          previous
+        </button>
+        {getPageGroup().map((item, index) => (
+          <button
+            key={index}
+            onClick={changePage}
+            className={`paginationItem ${
+              currentPage === item ? 'active' : null
+            }`}
+          >
+            <span>{item}</span>
           </button>
         ))}
-        <button onClick={next}>next</button>
+        <button
+          onClick={next}
+          className={`next ${currentPage === pages ? 'disabled' : ''}`}
+        >
+          next
+        </button>
       </section>
     </div>
   );
@@ -44,6 +76,13 @@ SearchComponent.propTypes = {
   getPageGroup: PropTypes.func.isRequired,
   changePage: PropTypes.func.isRequired,
   getPaginatedData: PropTypes.func.isRequired,
+  companyFilter: PropTypes.func.isRequired,
+  selectedCompany: PropTypes.string.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  pages: PropTypes.number.isRequired,
+  handleSearchTerm: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  searchSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchComponent;

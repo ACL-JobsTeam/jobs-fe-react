@@ -31,119 +31,119 @@ input[type='radio'] {
   display: none;
 }
 
-.Lyft {
+.lyft {
   background-color: hotpink;
   color: white;
 }
-.Lyft:hover {
+.lyft:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Airbnb {
+.airbnb {
   background-color: rgb(233, 31, 31);
   color: white;
 }
 
-.Airbnb:hover {
+.airbnb:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Stripe {
+.stripe {
   background-color: rgb(45, 92, 221);
   color: white;
 }
 
-.Stripe:hover {
+.stripe:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Twitch {
+.twitch {
   background-color: rgb(143, 2, 236);
   color: white;
 }
 
-.Twitch:hover {
+.twitch:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Coinbase {
+.coinbase {
   background-color: rgb(0, 102, 255);
   color: white;
 }
 
-.Coinbase:hover {
+.coinbase:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Discord {
+.discord {
   background-color: rgb(91, 91, 235);
   color: white;
 }
 
-.Discord:hover {
+.discord:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Github {
+.github {
   background-color: black;
   color: white;
 }
 
-.Github:hover {
+.github:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Reddit {
+.reddit {
   background-color: red;
   color: white;
 }
 
-.Reddit:hover {
+.reddit:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Strava {
+.strava {
   background-color: rgb(202, 27, 27);
   color: white;
 }
 
-.Strava:hover {
+.strava:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Glassdoor {
+.glassdoor {
   background-color: yellowgreen;
   color: white;
 }
 
-.Glassdoor:hover {
+.glassdoor:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Netlify {
+.netlify {
   background-color: rgb(27, 143, 172);
   color: white;
 }
 
-.Netlify:hover {
+.netlify:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Robinhood {
+.robinhood {
   background-color: rgb(56, 230, 172);
   color: white;
 }
 
-.Robinhood:hover {
+.robinhood:hover {
   transform: scale(1.2, 1.1);
 }
 
-.Doordash {
+.doordash {
   background-color: tomato;
   color: white;
 }
 
-.Doordash:hover {
+.doordash:hover {
   transform: scale(1.2, 1.1);
 }
 

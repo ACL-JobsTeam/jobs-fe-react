@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Stripe from '../../assets/stripe.png';
+import { imageFinder } from '../../utils/imageUtil';
 
 const useStyles = makeStyles({
   root: {
@@ -33,41 +33,44 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchList = ({ getPaginatedData }) => {
+const SearchList = ({ getPaginatedData, searchTerm }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
       {getPaginatedData().map((job) => (
         <Card className={classes.root} key={job.id}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt="job listing"
-              height="140"
-              image={Stripe}
-              title="Job Listing"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h3">
-                {job.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="p"
-                className={classes.content}
-              >
-                this is a job description. Job content needs to be added to db.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+          <a href={job.url}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="job listing"
+                height="140"
+                image={imageFinder(job.company)}
+                title="Job Listing"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h3">
+                  {job.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  className={classes.content}
+                >
+                  this is a job description. Job content needs to be added to
+                  db.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </a>
           <CardActions>
             <Button size="small" color="primary">
-              Save
+              save
             </Button>
             <Button size="small" color="primary">
-              Learn More
+              <a href={job.url}>Learn More</a>
             </Button>
           </CardActions>
         </Card>
@@ -88,6 +91,7 @@ SearchList.propTypes = {
     })
   ).isRequired,
   getPaginatedData: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
 };
 
 export default SearchList;
