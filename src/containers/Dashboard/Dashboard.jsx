@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { parseNewApplicationsObject, parseNewColumnArray, parseNewColumnObject } from '../../utils/dashboard/dataUtils';
+import { fetchUserApplications, fetchUserColumns } from '../../utils/dashboard/fetchUtils';
 
 import ColumnsList from './ColumnsList';
 import EditorModal from './EditorModal';
@@ -378,55 +380,37 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    // Reset inputs to empty on refresh.
-    setnewColNameInput('');
-
     // Get columns for the JWT user +CREDS
-    async function fetchColumns() {
-      const data = await fetch('http://localhost:7890/api/v1/columns/getall', {
-        method: 'GET',
-        credentials: 'include',
-      });
-      const jsonData = await data.json();
+    async function fetchAndModifyColumns() {
+      const jsonData = await fetchUserColumns();
 
-      const columnObject = {};
-      jsonData.forEach((column) => {
-        column.job_pos = column.job_pos.map((numId) => String(numId));
-        columnObject[column.column_id] = column;
-      });
+      const columnObject = parseNewColumnObject(jsonData);
       setcolumnsObject(columnObject);
 
-      const orderedColumnIds = Array(jsonData.length).fill(null);
-      jsonData.forEach((column) => {
-        orderedColumnIds.splice(column.col_position, 1, column.column_id);
-      });
+      const orderedColumnIds = parseNewColumnArray(jsonData);
       setcolumnsIdArray(orderedColumnIds);
 
-      fetchApplications();
     }
-    fetchColumns();
 
-    // Get related applications for the JWT user +CREDS
-    async function fetchApplications() {
-      const data = await fetch(
-        'http://localhost:7890/api/v1/applications/getapplications',
-        {
-          method: 'GET',
-          credentials: 'include',
-        }
-      );
-      const jsonData = await data.json();
+    // Get applications for the JWT user +CREDS
+    async function fetchAndModifyApplications() {
 
-      const jobsObject = {};
-      jsonData.forEach((column) => {
-        jobsObject[column.column_id] = column.jobs_list;
-      });
+      const jsonData = await fetchUserApplications();
+
+      const jobsObject = parseNewApplicationsObject(jsonData);
       setJobApps(jobsObject);
     }
+
+    // Reset input to empty on refresh
+    // Fetch Columns and Applications for User.
+    setnewColNameInput('');
+    fetchAndModifyColumns();
+    fetchAndModifyApplications();
+
   }, []);
 
   // If all the data loads properly: no nulls.
-  if (columnsObject && columnsIdArray && jobApps) {
+  if(columnsObject && columnsIdArray && jobApps) {
     return (
       <DragDropContext onDragEnd={onDragEnd}>
         <EditorModal
@@ -448,7 +432,7 @@ export default function Dashboard() {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              style={{ display: 'flex' }}
+              style={{ display: 'flex', justifyContent:'space-around' }}
             >
               <ColumnsList
                 columnsObject={columnsObject}
