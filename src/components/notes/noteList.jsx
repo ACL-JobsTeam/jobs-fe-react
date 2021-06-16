@@ -10,7 +10,7 @@ const NoteList = ({ notes, setNotes }) => {
       
   const createNewNote = async (e) => {
     e.preventDefault();
-    const newNote = await fetch('http://localhost:7890/api/v1/notes/new', {
+    const newNote = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/notes/new`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -33,7 +33,7 @@ const NoteList = ({ notes, setNotes }) => {
   };
 
   const handleDeleteNote = async (id, index) => {
-    const deleted = await fetch(`http://localhost:7890/api/v1/notes/${id}`, {
+    const deleted = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/notes/${id}`, {
       method: 'DELETE',
       credentials: 'include'
     });

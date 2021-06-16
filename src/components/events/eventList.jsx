@@ -11,7 +11,7 @@ const EventList = ({ events, setEvents }) => {
       
   const createNewEvent = async (e) => {
     e.preventDefault();
-    const newEvent = await fetch('http://localhost:7890/api/v1/events/new', {
+    const newEvent = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/events/new`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -35,7 +35,7 @@ const EventList = ({ events, setEvents }) => {
   };
 
   const handleDeleteEvent = async (id, index) => {
-    const deleted = await fetch(`http://localhost:7890/api/v1/events/${id}`, {
+    const deleted = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/events/${id}`, {
       method: 'DELETE',
       credentials: 'include'
     });

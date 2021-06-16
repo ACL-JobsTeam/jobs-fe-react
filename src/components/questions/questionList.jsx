@@ -10,7 +10,7 @@ const QuestionList = ({ questions, setQuestions }) => {
       
   const createNewQuestion = async (e) => {
     e.preventDefault();
-    const newQuestion = await fetch('http://localhost:7890/api/v1/questions/new', {
+    const newQuestion = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/questions/new`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -31,7 +31,7 @@ const QuestionList = ({ questions, setQuestions }) => {
   };
 
   const handleDeleteQuestion = async (id, index) => {
-    const deleted = await fetch(`http://localhost:7890/api/v1/questions/${id}`, {
+    const deleted = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/questions/${id}`, {
       method: 'DELETE',
       credentials: 'include'
     });

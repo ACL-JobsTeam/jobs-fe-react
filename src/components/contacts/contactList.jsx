@@ -10,7 +10,7 @@ const ContactList = ({ contacts, setContacts }) => {
       
   const createNewContact = async (e) => {
     e.preventDefault();
-    const newContact = await fetch('http://localhost:7890/api/v1/contacts/new', {
+    const newContact = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/contacts/new`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -31,7 +31,7 @@ const ContactList = ({ contacts, setContacts }) => {
   };
 
   const handleDeleteContact = async (id, index) => {
-    const deleted = await fetch(`http://localhost:7890/api/v1/contacts/${id}`, {
+    const deleted = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/contacts/${id}`, {
       method: 'DELETE',
       credentials: 'include'
     });
