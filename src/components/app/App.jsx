@@ -42,7 +42,7 @@ export default function App() {
     if(!user && loading === 'rejected'){
       return <Redirect to="/"/>;
     } 
-    if(user && loading ==='resolved'){
+    if(user && loading === 'resolved'){
       return (
         <Route exact path={path} {...props}>
           <Component />
