@@ -1,8 +1,15 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { parseNewApplicationsObject, parseNewColumnArray, parseNewColumnObject } from '../../utils/dashboard/dataUtils';
-import { fetchUserApplications, fetchUserColumns } from '../../utils/dashboard/fetchUtils';
+import {
+  parseNewApplicationsObject,
+  parseNewColumnArray,
+  parseNewColumnObject,
+} from '../../utils/dashboard/dataUtils';
+import {
+  fetchUserApplications,
+  fetchUserColumns,
+} from '../../utils/dashboard/fetchUtils';
 
 import ColumnsList from './ColumnsList';
 import EditorModal from './EditorModal';
@@ -389,12 +396,10 @@ export default function Dashboard() {
 
       const orderedColumnIds = parseNewColumnArray(jsonData);
       setcolumnsIdArray(orderedColumnIds);
-
     }
 
     // Get applications for the JWT user +CREDS
     async function fetchAndModifyApplications() {
-
       const jsonData = await fetchUserApplications();
 
       const jobsObject = parseNewApplicationsObject(jsonData);
@@ -409,7 +414,7 @@ export default function Dashboard() {
 
   }, []);
 
-  // If all the data loads properly: no nulls.
+  // If all the data loads:
   if(columnsObject && columnsIdArray && jobApps) {
     return (
       <DragDropContext onDragEnd={onDragEnd}>
@@ -432,7 +437,7 @@ export default function Dashboard() {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              style={{ display: 'flex', justifyContent:'space-around' }}
+              style={{ display: 'flex', justifyContent: 'space-around' }}
             >
               <ColumnsList
                 columnsObject={columnsObject}
@@ -458,5 +463,5 @@ export default function Dashboard() {
     );
   }
 
-  return <h1>LOADING</h1>;
+  return <h1>L O A D I N G</h1>;
 }
