@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import SearchComponent from '../../components/search/SearchComponent';
@@ -5,12 +6,11 @@ import { fetchAllJobs, fetchJobsByCompany } from '../../utils/searchUtils';
 
 const Search = () => {
   const [jobs, setJobs] = useState([]);
-  const [filteredJobs, setFilteredJobs] = useState([]);
-  const [searchAndCompanyJobs, setSearchAndCompanyJobs] = useState([]);
   const [pages] = useState(jobs.length / 18);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCompany, setSelectedCompany] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredJobs, setFilteredJobs] = useState([]);
 
   const dataLimit = 18;
   const pageWindowSize = 10;
@@ -18,15 +18,9 @@ const Search = () => {
   useEffect(() => {
     if (selectedCompany === '') {
       fetchAllJobs().then(setJobs);
-    } else if (selectedCompany) {
+    } else if (selectedCompany.length) {
       fetchJobsByCompany(selectedCompany).then(setJobs).then(setCurrentPage(1));
-      const reFiltered = filteredJobs.filter((job) =>
-        job.company.toLowerCase.includes(selectedCompany.toLowerCase())
-      );
-    } 
-      setSearchAndCompanyJobs(reFiltered);
     }
-    console.log('this filter is set', searchAndCompanyJobs);
   }, [selectedCompany]);
 
   const goToNextPage = () => {
@@ -48,8 +42,6 @@ const Search = () => {
 
     if (filteredJobs.length === 0) return jobs.slice(startIndex, endIndex);
     else if (filteredJobs) return filteredJobs.slice(startIndex, endIndex);
-    else searchAndCompanyJobs.length > 0;
-    return searchAndCompanyJobs.slice(startIndex, endIndex);
   };
 
   const getPageGroup = () => {
@@ -76,6 +68,10 @@ const Search = () => {
     setFilteredJobs(filtered);
   };
 
+  const companyReset = () => {
+    setSelectedCompany('');
+  };
+
   return (
     <div>
       <SearchComponent
@@ -92,7 +88,7 @@ const Search = () => {
         handleSearchTerm={handleSearchTerm}
         searchTerm={searchTerm}
         searchSubmit={searchSubmit}
-        searchAndCompanyJobs={searchAndCompanyJobs}
+        companyReset={companyReset}
       />
     </div>
   );

@@ -17,6 +17,7 @@ const SearchComponent = ({
   handleSearchTerm,
   searchTerm,
   searchSubmit,
+  companyReset,
 }) => {
   return (
     <div className="search-component">
@@ -25,6 +26,7 @@ const SearchComponent = ({
         selectedCompany={selectedCompany}
         handleSearchTerm={handleSearchTerm}
         searchSubmit={searchSubmit}
+        companyReset={companyReset}
       />
       <SearchList
         jobs={jobs}
@@ -83,6 +85,7 @@ SearchComponent.propTypes = {
   handleSearchTerm: PropTypes.func.isRequired,
   searchTerm: PropTypes.string.isRequired,
   searchSubmit: PropTypes.func.isRequired,
+  companyReset: PropTypes.func.isRequired,
 };
 
 export default SearchComponent;

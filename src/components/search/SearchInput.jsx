@@ -17,7 +17,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SearchInput = ({ companyFilter, handleSearchTerm, searchSubmit }) => {
+const SearchInput = ({
+  companyFilter,
+  handleSearchTerm,
+  searchSubmit,
+  companyReset,
+}) => {
   const companies = [
     {
       name: 'lyft',
@@ -94,6 +99,7 @@ const SearchInput = ({ companyFilter, handleSearchTerm, searchSubmit }) => {
           search
         </button>
       </form>
+      <button onClick={companyReset}>ALL</button>
     </div>
   );
 };
@@ -103,6 +109,7 @@ SearchInput.propTypes = {
   selectedCompany: PropTypes.string.isRequired,
   handleSearchTerm: PropTypes.func.isRequired,
   searchSubmit: PropTypes.func.isRequired,
+  companyReset: PropTypes.func.isRequired,
 };
 
 export default SearchInput;

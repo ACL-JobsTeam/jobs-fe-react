@@ -1,5 +1,5 @@
 export const fetchAllJobs = async () => {
-  const res = await fetch('http://localhost:7890/api/v1/jobs/all');
+  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/jobs/all`);
 
   const jobData = await res.json();
 
@@ -9,7 +9,9 @@ export const fetchAllJobs = async () => {
 
 export const fetchJobsByCompany = async (company) => {
   console.log(company);
-  const res = await fetch(`http://localhost:7890/api/v1/jobs/${company}`);
+  const res = await fetch(
+    `${process.env.REACT_APP_BASE_URL}/api/v1/jobs/${company}`
+  );
 
   const companyJobData = await res.json();
 
