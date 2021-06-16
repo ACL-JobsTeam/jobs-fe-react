@@ -19,7 +19,7 @@ export default function App() {
 
   function AuthRoute({ user, component: Component, path, ...props }) {
     const fetchUser = async () => { 
-      const res = await fetch('http://localhost:7890/api/v1/auth/getuser', {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/getuser`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
