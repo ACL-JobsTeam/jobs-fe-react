@@ -70,7 +70,7 @@ export default function EditorModal({
   if (editorType === 'NEWAPP' || editorType === 'APPUPDATE') {
     return (
       <div
-        style={{ visibility, position: 'absolute', background: 'lightgreen' }}
+        style={{ visibility, position: 'absolute', background: 'lightgreen', zIndex: 10 }}
       >
         <button onClick={() => setEditorVis('hidden')}>X</button>
         <section>Create new: {editorType}</section>

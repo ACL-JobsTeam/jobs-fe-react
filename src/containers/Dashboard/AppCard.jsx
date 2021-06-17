@@ -1,5 +1,6 @@
-import { Button, ButtonGroup, Card, Typography } from '@material-ui/core';
-
+import { Button, ButtonGroup, Card, IconButton, Typography } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import BuildIcon from '@material-ui/icons/Build';
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
@@ -13,12 +14,13 @@ export default function AppCard({
 }) {
   return (
     <Draggable draggableId={`${job.app_id}`} key={job.app_id} index={index}>
-      {(provided) => {
+      {(provided, snapshot) => {
         const style = {
           display: 'flex', 
           justifyContent:'space-between', 
           padding: '5px',
           marginBottom: '5px',
+          background: snapshot.isDragging ? '#77DAFF' : 'white',
           ...provided.draggableProps.style
         };
 
@@ -29,16 +31,17 @@ export default function AppCard({
             ref={provided.innerRef}
             style={style}
           >
-            <section>
+            <section style={{ padding: '5px' }}>
               <Typography
-                variant='h6'
+                variant='subtitle2'
               >
                 {job.position}
               </Typography>
-              <Typography>
+              <Typography
+                variant='subtitle2'
+              >
                 {job.company}
               </Typography>
-              {job.app_id}
             </section>
 
             <ButtonGroup 
@@ -47,18 +50,6 @@ export default function AppCard({
               size="small" 
               orientation="vertical"
             >
-              <Button 
-                aria-label="Delete Application Card"
-                onClick={() => handleDeleteApp(job.app_id, index, column.column_id)}
-              >
-                  Delete
-              </Button>
-              <Button 
-                aria-label="Update Application Card"
-                onClick={() => handleModal({ job, column, index }, 'APPUPDATE')}
-              >
-                  Update
-              </Button>
               <Button>
                 <Link
                   style={{ textDecoration: 'none' }} 
@@ -74,6 +65,24 @@ export default function AppCard({
                   Posting
                 </a>
               </Button>
+              <ButtonGroup 
+                color="primary" 
+                variant="outlined"
+                size="small" 
+              >
+                <Button 
+                  aria-label="Delete Application Card"
+                  onClick={() => handleDeleteApp(job.app_id, index, column.column_id)}
+                >
+                  <DeleteIcon fontSize="small" /> 
+                </Button>
+                <Button 
+                  aria-label="Update Application Card"
+                  onClick={() => handleModal({ job, column, index }, 'APPUPDATE')}
+                >
+                    <BuildIcon fontSize="small" />
+                </Button>
+              </ButtonGroup>
             </ButtonGroup>
         
           </Card>
