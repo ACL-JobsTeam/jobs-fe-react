@@ -68,7 +68,7 @@ const NoteList = ({ notes, setNotes }) => {
       <p className={style.notesIntro}>Notes</p>
       <form onSubmit={createNewNote}>
         <span >
-          <textarea className={style.noteInput} placeholder="The interviewer had kind eyes" onChange={(e) => setUserNote(e.target.value)}/>
+          <textarea className={style.noteInput} placeholder="Seems like they care abour their employee's" onChange={(e) => setUserNote(e.target.value)}/>
         </span>
         <CardActions>
           <span  className={style.noteButton}>

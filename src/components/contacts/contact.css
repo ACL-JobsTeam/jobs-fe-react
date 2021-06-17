@@ -25,7 +25,7 @@
 }
 .contactContainer {
     display: grid;
-    grid-template-columns: 345px 345px 345px 345px 345px;
+    grid-template-columns: repeat(auto-fit, minmax(345px, 1fr));
     grid-template-rows: auto;
     justify-content: space-evenly;
     padding: 0px;
