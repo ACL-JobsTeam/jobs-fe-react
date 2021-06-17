@@ -1,6 +1,7 @@
 .search-header {
   display: flex;
   height: 200px;
+  width: 100%;
   flex-direction: column;
 }
 
@@ -147,15 +148,92 @@ input[type='radio'] {
   transform: scale(1.2, 1.1);
 }
 
-.input-section {
+.search-button {
   display: flex;
-  height: 100px;
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(255, 255, 255, 0.007);
+  width: 55px;
+  border: none;
+  margin-top: 5px;
 }
 
-.input-section input {
-  width: 300px;
+.search-button:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.search-img {
+  display: flex;
+  width: 40px;
+  height: 40px;
+}
+
+.reset-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
   height: 30px;
+  border-radius: 10%;
+  background-color: rgb(92, 92, 218);
+  color: white;
   box-shadow: 10px 10px 10px grey;
+}
+
+.reset-button:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.reset-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px;
+}
+
+.paginationItem {
+  background-color: #fff;
+  border: 2px solid #666;
+  padding: 10px 15px;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  position: relative;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.paginationItem span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+  background: #fff;
+  border: none;
+  padding: 10px;
+  color: blue;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.paginationItem.active {
+  border: 1px solid #888;
+  color: #888;
+  pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
 }

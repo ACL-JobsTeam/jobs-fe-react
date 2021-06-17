@@ -18,21 +18,19 @@ const useStyles = makeStyles({
     backgroundColor: 'whitesmoke',
     margin: '25px',
     boxShadow: '10px 10px 10px 10px grey',
-    textDecoration: 'none',
   },
   container: {
     width: '100%',
-    height: '100%',
+    height: '70%',
+    top: '100px',
     display: 'grid',
     gridTemplateColumns: '450px 450px 450px',
     gridTemplateRows: '450px 450px 450px',
     justifyContent: 'space-evenly',
-    textDecoration: 'none',
   },
   content: {
     height: '70px',
     overflow: 'hidden',
-    textDecoration: 'none',
   },
 });
 

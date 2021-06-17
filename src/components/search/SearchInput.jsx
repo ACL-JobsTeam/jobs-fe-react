@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,14 +7,14 @@ import './list.css';
 
 const useStyles = makeStyles(() => ({
   root: {
-    '& > *': {
-      marginLeft: '500px',
-      marginTop: '3vh',
-      width: '70ch',
-      display: 'flex',
-      justifyContent: 'center',
-      boxShadow: '10px 10px 10px grey',
-    },
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searchBar: {
+    width: '88vh',
+    zIndex: 1,
   },
 }));
 
@@ -94,12 +95,20 @@ const SearchInput = ({
           label="Enter a Job Title"
           variant="outlined"
           onChange={(e) => handleSearchTerm(e)}
+          className={classes.searchBar}
         />
-        <button type="submit" value="Submit">
-          search
+        <button type="submit" value="Submit" className="search-button">
+          <img
+            src="https://img.icons8.com/pastel-glyph/64/000000/search--v3.png"
+            className="search-img"
+          />
         </button>
       </form>
-      <button onClick={companyReset}>ALL</button>
+      <div className="reset-container">
+        <button onClick={companyReset} className="reset-button">
+          Reset
+        </button>
+      </div>
     </div>
   );
 };
