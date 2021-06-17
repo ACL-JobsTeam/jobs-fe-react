@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SingleContact from './singleContact';
 import { useParams } from 'react-router';
+import CardActions from '@material-ui/core/CardActions';
+import style from './contact.css';
+import Button from '@material-ui/core/Button';
 
 const ContactList = ({ contacts, setContacts }) => {
   const [companyContact, setCompanyContact] = useState('');
@@ -46,33 +49,32 @@ const ContactList = ({ contacts, setContacts }) => {
       });
     }
   };
-  /*
-  const handleEditContact = async (id) => {
-    const editedContact = await fetch(`http://localhost:7890/api/v1/contacts/${id}`, {
-      method: 'PUT',
-      credentials: 'include',
-      body: JSON.stringify({
-        companyContact
-      })
-    });
-  };
- */
+ 
   const contactItems = contacts.map((contact, index) => (
-    <li key={contact.id}>
+    <li className={style.contactItem} key={contact.id}>
       
       <SingleContact {...contact} index={index} handleDeleteContact={handleDeleteContact}/>
     </li>
   ));
 
   return (
-    <div>
-      <p>view/add contacts </p>
+    <div className={style.contactCon}>
+      <p className={style.contactsIntro}>Contacts</p>
       <form onSubmit={createNewContact}>
-        <input placeholder="new contact" onChange={(e) => setCompanyContact(e.target.value)}/>
-        <button type="submit">click me</button>
+      <span >
+          <textarea className={style.contactInput} placeholder="The interviewer had kind eyes" onChange={(e) => setCompanyContact(e.target.value)}/>
+        </span>
+        <CardActions>
+          <span  className={style.contactButton}>
+            <Button type="submit" variant="contained" size="large" color="primary">
+        Add Contact&gt; 
+            </Button>
+          </span> 
+        </CardActions>
+       
       </form>
         
-      <ul>
+      <ul className={style.contactContainer}>
       
         {contactItems}
  

@@ -1,4 +1,4 @@
-.notesIntro {
+.contactsIntro {
     color: black;
     font-size: 30px;
     text-align: center;
@@ -8,8 +8,8 @@
     font-weight: bold;
 }
 
-.noteInput {
-    height: 150px;
+.contactInput {
+    height: 80px;
     word-wrap: break-word;
     width: 300px;
     display: block;
@@ -18,28 +18,30 @@
     font-family: 'Comfortaa';
   }
 
-  .noteButton{
+  .contactButton{
     display: block;
     margin-left: auto;
     margin-right: auto;
     font-family: 'Comfortaa';
 }
-.listContainer {
+.contactContainer {
     display: grid;
     grid-template-columns: 345px 345px 345px 345px 345px;
+    grid-template-rows: auto;
     justify-content: space-evenly;
     padding: 0px;
     margin: 0px;
     white-space: pre-wrap;
+
 }
-.listItem {
+.contactItem {
     list-style: none;
     justify-content: space-around;
     margin: 5px;
     padding: 5px;
     font-family: 'Comfortaa';
   }
-  .noteCon {
+  .contactCon {
     
     width: 95%;
     justify-content: center;

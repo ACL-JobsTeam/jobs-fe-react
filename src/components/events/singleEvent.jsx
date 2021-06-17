@@ -1,15 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import style from './event.css';
 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+    
+  },
+  media: {
+    height: 140,
+  },
+
+});
 
 const SingleEvent = ({ eventDate, eventName, id, index, handleDeleteEvent }) => {
- 
+  const classes = useStyles();
   return (
     <>
-      <div key={id}>
-        {new Date(eventDate).toDateString()} - {eventName} 
-      </div>
-      <button onClick={() => handleDeleteEvent(id, index)}>delete</button>
+        <Card className={classes.root}>
+        <CardContent>
+          <Typography key={id} variant="body2" color="primary" component="p">
+          {new Date(eventDate).toDateString()} : {eventName}
+          </Typography>
+          <CardActions>
+            <Button size="small" color="secondary" onClick={() => handleDeleteEvent(id, index)}>
+          Delete
+            </Button>
+          </CardActions>
+        </CardContent>
+      </Card>
     </>
   );};
 

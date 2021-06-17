@@ -35,10 +35,10 @@ const Detail = () => {
     <div className={styles.page} >
       <h1 className={styles.header}>Notebook</h1>
       
-      <ContactList contacts={contacts} setContacts={setContacts}/>
-      <NoteList notes={notes} setNotes={setNotes} />
-      <QuestionList questions={questions} setQuestions={setQuestions} />
       <EventList events={events} setEvents={setEvents} />
+      <ContactList contacts={contacts} setContacts={setContacts}/>
+      <QuestionList questions={questions} setQuestions={setQuestions} />
+      <NoteList notes={notes} setNotes={setNotes} />
       
     </div>
   );

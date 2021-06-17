@@ -1,4 +1,4 @@
-.notesIntro {
+.questionsIntro {
     color: black;
     font-size: 30px;
     text-align: center;
@@ -8,7 +8,7 @@
     font-weight: bold;
 }
 
-.noteInput {
+.questionInput {
     height: 150px;
     word-wrap: break-word;
     width: 300px;
@@ -18,13 +18,13 @@
     font-family: 'Comfortaa';
   }
 
-  .noteButton{
+  .questionButton{
     display: block;
     margin-left: auto;
     margin-right: auto;
     font-family: 'Comfortaa';
 }
-.listContainer {
+.questionContainer {
     display: grid;
     grid-template-columns: 345px 345px 345px 345px 345px;
     justify-content: space-evenly;
@@ -32,14 +32,14 @@
     margin: 0px;
     white-space: pre-wrap;
 }
-.listItem {
+.questionItem {
     list-style: none;
     justify-content: space-around;
     margin: 5px;
     padding: 5px;
     font-family: 'Comfortaa';
-  }
-  .noteCon {
+}
+.questionCon {
     
     width: 95%;
     justify-content: center;

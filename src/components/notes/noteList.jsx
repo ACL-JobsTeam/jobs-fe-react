@@ -2,27 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SingleNote from './singleNote';
 import { useParams } from 'react-router';
-import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import style from './note.css';
-
-
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-  
-  
-});
+
 
 const NoteList = ({ notes, setNotes }) => {
-  const classes = useStyles();
+  
   const [userNote, setUserNote] = useState('');
   const { id } = useParams();
   
@@ -76,7 +63,8 @@ const NoteList = ({ notes, setNotes }) => {
   ));
 
   return (
-    <>
+   
+      <div className={style.noteCon}>
       <p className={style.notesIntro}>Notes</p>
       <form onSubmit={createNewNote}>
         <span >
@@ -84,7 +72,7 @@ const NoteList = ({ notes, setNotes }) => {
         </span>
         <CardActions>
           <span  className={style.noteButton}>
-            <Button type="submit" size="large" color="primary">
+            <Button type="submit" variant="contained" size="large" color="primary">
         Add Note&gt; 
             </Button>
           </span> 
@@ -94,8 +82,8 @@ const NoteList = ({ notes, setNotes }) => {
       <ul className={style.listContainer}>
         {noteItems}
       </ul>
+      </div>
     
-    </>
   );
 };
 

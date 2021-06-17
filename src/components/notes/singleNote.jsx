@@ -16,12 +16,7 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
-  
-  test: {
-    display: 'grid',
-    gridTemplateColumns: '3 3 3',
-  },
- 
+
 });
 const SingleNote = ({ userNote, id, index, handleDeleteNote }) => {
   const classes = useStyles();
