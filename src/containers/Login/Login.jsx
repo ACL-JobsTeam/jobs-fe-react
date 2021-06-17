@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import './login.css';
+import style from './login.module.css';
 
 const Login = ({ setLoading }) => {
   const [password, setPassword] = useState('');
@@ -46,13 +46,13 @@ const Login = ({ setLoading }) => {
   }
 
   return (
-    <div className="login-ctn">
-      <div className="box">
-        <div className="wave -three"></div>
+    <div className={style.loginCtn}>
+      <div className={style.box}>
+        <div className={style.waveThree}></div>
       </div>
-      <div className="header">
-        <h2 className="logo">aspir.io</h2>
-        <div className="subtitle">
+      <div className={style.header}>
+        <h2 className={style.logo}>aspir.io</h2>
+        <div className={style.subtitle}>
           <span>
             track job applications
             <br />
@@ -61,20 +61,20 @@ const Login = ({ setLoading }) => {
         </div>
       </div>
 
-      <nav className="nav"></nav>
+      <nav className={style.nav}></nav>
       <div>
-        <span className="error">{err}</span>
+        <span className={style.error}>{err}</span>
       </div>
-      <form onSubmit={submit} className="signup-form" autoComplete="off">
+      <form onSubmit={submit} className={style.signupForm} autoComplete="off">
         <h3>Sign In To Your Account</h3>
-        <section className="user-inputs">
+        <section className={style.userInputs}>
           <div>
             <TextField
               id="outlined-basic"
               label="username"
               variant="outlined"
               onChange={(e) => setUsername(e.target.value)}
-              className="username-input"
+              className={style.usernameInput}
             />
           </div>
           <div>
@@ -89,11 +89,11 @@ const Login = ({ setLoading }) => {
           </div>
         </section>
         <section>
-          <button type="submit" className="login">
+          <button type="submit" className={style.login}>
             Login
           </button>
           <Link to="/register">
-            <button className="register">Register</button>
+            <button className={style.register}>Register</button>
           </Link>
         </section>
       </form>

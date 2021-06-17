@@ -13,12 +13,13 @@ body {
 
 .wave {
   position: absolute;
-  opacity: 1;
   width: 1600px;
   height: 1800px;
   margin-left: -700px;
   margin-top: -800px;
   border-radius: 43%;
+  animation: rotate 7500ms infinite linear;
+  background-color: #77daff;
 }
 
 @keyframes rotate {
@@ -30,11 +31,7 @@ body {
   }
 }
 
-.wave.-three {
-  animation: rotate 7500ms infinite linear;
-  background-color: #77daff;
-}
-.login-ctn {
+.loginCtn {
   display: flex;
   width: auto;
   height: 100vh;
@@ -93,7 +90,7 @@ body {
   margin-left: 100px;
 }
 
-.signup-form {
+.signupForm {
   position: relative;
   top: 30%;
   right: 20%;
@@ -111,7 +108,7 @@ body {
   color: rgb(66, 64, 64);
 }
 
-.signup-form h3 {
+.signupForm h3 {
   display: flex;
   height: 50px;
   width: 100%;
@@ -123,7 +120,7 @@ body {
   text-shadow: 10px grey;
 }
 
-.signup-form input {
+.signupForm input {
   display: flex;
   align-items: center;
   width: 20vh;
@@ -134,11 +131,11 @@ body {
   background-color: rgb(231, 226, 226);
 }
 
-.signup-form button {
+.signupForm button {
   align-items: flex-end;
 }
 
-.user-inputs div {
+.userInputs div {
   margin-left: 10px;
   margin: 7px;
   position: relative;
@@ -162,7 +159,7 @@ body {
   align-content: space-evenly;
 }
 
-.signup-form button:hover {
+.signupForm button:hover {
   transform: scale(1.2, 1.2);
   cursor: pointer;
 }

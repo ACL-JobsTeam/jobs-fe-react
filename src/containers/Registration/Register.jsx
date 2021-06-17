@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import TextField from '@material-ui/core/TextField';
-import '../Login/login.css';
+import style from '../Login/login.module.css';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -51,13 +51,13 @@ const Register = () => {
     setEmailErr('sorry that email is taken');
   }
   return (
-    <div className="login-ctn">
-      <div className="box">
-        <div className="wave -three"></div>
+    <div className={style.loginCtn}>
+      <div className={style.box}>
+        <div className={style.wave}></div>
       </div>
-      <div className="header">
-        <h2 className="logo">aspir.io</h2>
-        <div className="subtitle">
+      <div className={style.header}>
+        <h2 className={style.logo}>aspir.io</h2>
+        <div className={style.subtitle}>
           <span>
             track job applications
             <br />
@@ -65,12 +65,12 @@ const Register = () => {
           </span>
         </div>
       </div>
-      <div className="nav">
+      <div className={style.nav}>
         {usernameErr}
         {emailErr}
       </div>
-      <form onSubmit={submit} className="signup-form register-form">
-        <section className="user-inputs">
+      <form onSubmit={submit} className={style.signupForm}>
+        <section className={style.userInputs}>
           <h3>Registration</h3>
           <div>
             <TextField
@@ -78,7 +78,7 @@ const Register = () => {
               label="username"
               variant="outlined"
               onChange={(e) => setUsername(e.target.value)}
-              className="username-input"
+              className={style.usernameInput}
             />
           </div>
           <div>
@@ -88,7 +88,7 @@ const Register = () => {
               type="email"
               variant="outlined"
               onChange={(e) => setEmail(e.target.value)}
-              className="password-input"
+              className={style.passwordInput}
             />
           </div>
           <div>
@@ -98,7 +98,7 @@ const Register = () => {
               type="password"
               variant="outlined"
               onChange={(e) => setPassword(e.target.value)}
-              className="password-input"
+              className={style.passwordInput}
             />
           </div>
           <button type="submit" className="register">
