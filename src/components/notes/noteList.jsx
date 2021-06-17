@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SingleNote from './singleNote';
 import { useParams } from 'react-router';
+import CardActions from '@material-ui/core/CardActions';
+import style from './note.css';
+import Button from '@material-ui/core/Button';
+
+
 
 const NoteList = ({ notes, setNotes }) => {
+  
   const [userNote, setUserNote] = useState('');
   const { id } = useParams();
   
@@ -50,24 +56,36 @@ const NoteList = ({ notes, setNotes }) => {
   };
  
   const noteItems = notes.map((note, index) => (
-    <li key={note.id}>
+    <li className={style.listItem} key={note.id}>
       
       <SingleNote {...note} index={index} handleDeleteNote={handleDeleteNote}/>
     </li>
   ));
 
   return (
-    <div>
-      <p>view/add notes </p>
+   
+      <div className={style.noteCon}>
+      <p className={style.notesIntro}>Notes</p>
       <form onSubmit={createNewNote}>
-        <input placeholder="new note" onChange={(e) => setUserNote(e.target.value)}/>
-        <button type="submit">add note</button>
+        <span >
+          <textarea className={style.noteInput} placeholder="The interviewer had kind eyes" onChange={(e) => setUserNote(e.target.value)}/>
+        </span>
+        <CardActions>
+          <span  className={style.noteButton}>
+            <Button type="submit" variant="contained" size="large" color="primary">
+        Add Note&gt; 
+            </Button>
+          </span> 
+        </CardActions>
       </form>
-      <ul>
+        
+      <ul className={style.listContainer}>
         {noteItems}
       </ul>
-    </div>
-  );};
+      </div>
+    
+  );
+};
 
 NoteList.propTypes = {
   notes: PropTypes.arrayOf(
@@ -80,3 +98,18 @@ NoteList.propTypes = {
 
 export default NoteList;
 
+
+
+
+/* <div>
+      
+  <form onSubmit={createNewNote}>
+       
+    <button type="submit">add note</button>
+  </form>
+  <ul>
+    {noteItems}
+  </ul>
+</div>;
+
+*/

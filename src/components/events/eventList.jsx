@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SingleEvent from './singleEvent';
 import { useParams } from 'react-router';
+import CardActions from '@material-ui/core/CardActions';
+import style from './event.css';
+import Button from '@material-ui/core/Button';
 
 const EventList = ({ events, setEvents }) => {
   const [eventDate, setEventDate] = useState('');
@@ -52,22 +55,32 @@ const EventList = ({ events, setEvents }) => {
   };
 
   const eventItems = events.map((event, index) => (
-    <li key={event.id}>
+    <li className={style.eventItem} key={event.id}>
       
       <SingleEvent {...event} index={index} handleDeleteEvent={handleDeleteEvent}/>
     </li>
   ));
 
   return (
-    <div>
-      <p>view/add event </p>
+    <div className={style.eventCon}>
+      <p className={style.eventsIntro}>Events</p>
       <form onSubmit={createNewEvent}>
-        <input type="date" placeholder="new date" onChange={(e) => setEventDate(e.target.value)}/>
-        <input placeholder="new event" onChange={(e) => setEventName(e.target.value)}/>
-        <button type="submit">click me</button>
+        <span>
+          <input className={style.eventCal} type="date" placeholder="new date" onChange={(e) => setEventDate(e.target.value)}/>
+          <textarea className={style.eventInput} placeholder="Got lost in interviewers eyes" onChange={(e) => setEventName(e.target.value)}/>
+        </span>
+        
+        <CardActions>
+          <span  className={style.eventButton}>
+            <Button type="submit" variant="contained" size="large" color="primary">
+        Add Event&gt; 
+            </Button>
+          </span> 
+        </CardActions>
+      
       </form>
         
-      <ul>
+      <ul className={style.eventContainer}>
       
         {eventItems}
       
