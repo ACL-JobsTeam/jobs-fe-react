@@ -63,7 +63,7 @@ const QuestionList = ({ questions, setQuestions }) => {
       <p className={style.questionsIntro} >Questions </p>
       <form onSubmit={createNewQuestion}>
         <span>
-          <textarea className={style.questionInput} placeholder="Was the interviewer wearing contacts?" onChange={(e) => setUserQuestion(e.target.value)}/>
+          <textarea className={style.questionInput} placeholder="What type of benefits do they offer" onChange={(e) => setUserQuestion(e.target.value)}/>
         </span>
         <CardActions>
           <span  className={style.questionButton}>

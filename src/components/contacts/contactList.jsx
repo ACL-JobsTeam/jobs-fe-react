@@ -62,7 +62,7 @@ const ContactList = ({ contacts, setContacts }) => {
       <p className={style.contactsIntro}>Contacts</p>
       <form onSubmit={createNewContact}>
       <span >
-          <textarea className={style.contactInput} placeholder="The interviewer had kind eyes" onChange={(e) => setCompanyContact(e.target.value)}/>
+          <textarea className={style.contactInput} placeholder="John Smith - jsmith@company.com" onChange={(e) => setCompanyContact(e.target.value)}/>
         </span>
         <CardActions>
           <span  className={style.contactButton}>
