@@ -24,8 +24,6 @@ import {
 import ColumnsList from './ColumnsList';
 import EditorModal from './EditorModal';
 
-
-
 export default function Dashboard() {
   const [columnsObject, setcolumnsObject] = useState(null);
   const [columnsIdArray, setcolumnsIdArray] = useState(null);
@@ -48,16 +46,19 @@ export default function Dashboard() {
   const updateColumnOrder = async (updatedColumns) => {
     const jsonData = await fetchUpdateColumnOrder(updatedColumns);
 
-    if(jsonData.updated === Object.keys(columnsObject).length) {
+    if (jsonData.updated === Object.keys(columnsObject).length) {
       return true;
     }
   };
 
   // Add single column. +CREDS +RESP
   const handleAddColumn = async () => {
-    const jsonData = await fetchHandleAddColumn(newColNameInput, columnsIdArray);
+    const jsonData = await fetchHandleAddColumn(
+      newColNameInput,
+      columnsIdArray
+    );
 
-    if(jsonData) {
+    if (jsonData) {
       const newColumn = jsonData[0];
       const { column_id } = newColumn;
 
@@ -81,10 +82,10 @@ export default function Dashboard() {
       \nApplications within the column will be permanently removed.`
     );
 
-    if(confirmDelete) {
+    if (confirmDelete) {
       const jsonData = await fetchHandleDeleteColumn(columnId);
 
-      if(jsonData) {
+      if (jsonData) {
         setcolumnsIdArray((prevArr) => {
           const position = prevArr.indexOf(jsonData[0].column_id);
           const copy = [...prevArr];
@@ -102,7 +103,7 @@ export default function Dashboard() {
   const handleRenameColumn = async (colId, newName) => {
     const jsonData = await fetchHandleRenameColumn(colId, newName);
 
-    if(jsonData) {
+    if (jsonData) {
       const { name } = jsonData;
 
       setcolumnsObject((prevObj) => {
@@ -125,7 +126,7 @@ export default function Dashboard() {
   const handleAddNewApp = async (colId, title, company, jobUrl) => {
     const jsonData = await fetchHandleAddNewApp(title, company, jobUrl);
 
-    if(jsonData) {
+    if (jsonData) {
       setcolumnsObject((prevObj) => {
         const destinationColumn = prevObj[colId];
 
@@ -161,31 +162,31 @@ export default function Dashboard() {
       \nThis application will be permanently removed.`
     );
 
-    if(confirmDelete){
+    if (confirmDelete) {
       const jsonData = await fetchHandleDeleteApp(appId);
-  
-      if(jsonData) {
+
+      if (jsonData) {
         setcolumnsObject((prevObj) => {
           const modifiedColumn = prevObj[colId];
-  
+
           const unmodifiedArr = modifiedColumn.job_pos;
-  
+
           const newArr = [...unmodifiedArr];
           newArr.splice(index, 1);
-  
+
           updateColumnApps(newArr, colId);
-  
+
           const newSubColumn = { ...modifiedColumn, job_pos: newArr };
-  
+
           return { ...prevObj, [colId]: newSubColumn };
         });
-  
+
         setJobApps((prevObj) => {
           const modifiedArray = prevObj[colId];
-  
+
           const newArr = [...modifiedArray];
           newArr.splice(index, 1);
-  
+
           return { ...prevObj, [colId]: newArr };
         });
       }
@@ -196,7 +197,7 @@ export default function Dashboard() {
   const handleUpdateApp = async (colId, appId, title, company, jobUrl) => {
     const jsonData = await fetchHandleUpdateApp(appId, title, company, jobUrl);
 
-    if(jsonData) {
+    if (jsonData) {
       setJobApps((prevObj) => {
         const destinationArray = prevObj[colId];
 
@@ -213,14 +214,14 @@ export default function Dashboard() {
     const { destination, source, draggableId, type } = result;
 
     // Do nothing if dropped outside droppable or in same column and same index.
-    if(
+    if (
       !destination ||
       (destination.droppableId === source.droppableId &&
         destination.index === source.index)
     )
       return;
 
-    if(type === 'column') {
+    if (type === 'column') {
       const newColumnOrder = [...columnsIdArray];
       newColumnOrder.splice(source.index, 1);
       newColumnOrder.splice(destination.index, 0, draggableId);
@@ -232,9 +233,9 @@ export default function Dashboard() {
       return;
     }
 
-    if(type === 'app-list') {
+    if (type === 'app-list') {
       // If source and destination are the same.
-      if(source.droppableId === destination.droppableId) {
+      if (source.droppableId === destination.droppableId) {
         setcolumnsObject((prevObj) => {
           const destinationColumn = prevObj[destination.droppableId];
 
@@ -271,7 +272,7 @@ export default function Dashboard() {
       }
 
       // If source and destination columns are not the same.
-      if(source.droppableId !== destination.droppableId) {
+      if (source.droppableId !== destination.droppableId) {
         setcolumnsObject((prevObj) => {
           const sourceColumn = prevObj[source.droppableId];
           const destinationColumn = prevObj[destination.droppableId];
@@ -356,17 +357,17 @@ export default function Dashboard() {
     setnewColNameInput('');
     fetchAndModifyColumns();
     fetchAndModifyApplications();
-
   }, []);
 
   // If all the data loads:
-  if(columnsObject && columnsIdArray && jobApps) {
+  if (columnsObject && columnsIdArray && jobApps) {
     return (
       <DragDropContext onDragEnd={onDragEnd}>
-        <div style={{
-          background: 'white',
-        }}>
-
+        <div
+          style={{
+            background: 'white',
+          }}
+        >
           <EditorModal
             editorVis={editorVis}
             setEditorVis={setEditorVis}
@@ -402,45 +403,40 @@ export default function Dashboard() {
               )}
             </Droppable>
 
-            <section style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justifyContent: 'center', 
-              width: '20vw',
-              alignSelf: 'center'
-            }}>
-              <TextField 
+            <section
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                width: '20vw',
+                alignSelf: 'center',
+              }}
+            >
+              <TextField
                 variant="outlined"
                 id="col-new-input"
                 name="new-col-name"
                 label="New Column Title"
                 value={newColNameInput}
                 onChange={(e) => setnewColNameInput(e.target.value)}
-              >
-              </TextField>
-              <IconButton
-                onClick={handleAddColumn}
-                aria-label="Add Column"
-              >
+              ></TextField>
+              <IconButton onClick={handleAddColumn} aria-label="Add Column">
                 <AddCircleIcon fontSize="large" />
               </IconButton>
             </section>
           </div>
-
-
         </div>
-
       </DragDropContext>
     );
   }
 
   return (
     <div
-      style={{  
+      style={{
         height: '90vh',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
     >
       <CircularProgress />

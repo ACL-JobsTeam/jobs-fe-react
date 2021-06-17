@@ -61,10 +61,7 @@ const Login = ({ setLoading }) => {
         </div>
       </div>
 
-      <nav className="nav">
-        <Link to="/dashboard">dashboard</Link>
-        <Link to="/search">search</Link>
-      </nav>
+      <nav className="nav"></nav>
       <div>
         <span className="error">{err}</span>
       </div>
