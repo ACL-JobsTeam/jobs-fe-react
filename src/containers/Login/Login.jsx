@@ -48,7 +48,7 @@ const Login = ({ setLoading }) => {
   return (
     <div className={style.loginCtn}>
       <div className={style.box}>
-        <div className={style.waveThree}></div>
+        <div className={style.wave}></div>
       </div>
       <div className={style.header}>
         <h2 className={style.logo}>aspir.io</h2>
