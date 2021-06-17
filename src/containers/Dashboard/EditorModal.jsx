@@ -1,7 +1,8 @@
+import { Button, Card, Modal, TextField, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 
 export default function EditorModal({
-  visibility,
+  editorVis,
   handleAddNewApp,
   setEditorVis,
   editorTargetData,
@@ -15,36 +16,36 @@ export default function EditorModal({
   const [appUrl, setAppUrl] = useState('');
 
   const handleUpdateInput = (e) => {
-    if (e.target.name === 'col-name') {
+    if(e.target.name === 'col-name') {
       setColName(e.target.value);
     }
-    if (e.target.name === 'app-title') {
+    if(e.target.name === 'app-title') {
       setAppTitle(e.target.value);
     }
-    if (e.target.name === 'app-position') {
+    if(e.target.name === 'app-position') {
       setAppCompany(e.target.value);
     }
-    if (e.target.name === 'app-url') {
+    if(e.target.name === 'app-url') {
       setAppUrl(e.target.value);
     }
   };
 
   const handleAppSubmitClose = () => {
     handleAddNewApp(editorTargetData, appTitle, appCompany, appUrl);
-    setEditorVis('hidden');
+    setEditorVis(false);
   };
 
   const handleAppUpdateSubmitClose = () => {
     const { app_id } = editorTargetData.job;
     const { column_id } = editorTargetData.column;
     handleUpdateApp(column_id, app_id, appTitle, appCompany, appUrl);
-    setEditorVis('hidden');
+    setEditorVis(false);
   };
 
   const handleColumnSubmitClose = () => {
     const { column_id } = editorTargetData;
     handleRenameColumn(column_id, colName);
-    setEditorVis('hidden');
+    setEditorVis(false);
   };
 
   useEffect(() => {
@@ -54,85 +55,165 @@ export default function EditorModal({
     setAppCompany('');
     setAppUrl('');
 
-    if (editorType === 'APPUPDATE') {
+    if(editorType === 'APPUPDATE') {
       const { company, position, job_url } = editorTargetData.job;
       setAppTitle(position);
       setAppCompany(company);
       setAppUrl(job_url);
     }
 
-    if (editorType === 'COLUMN') {
+    if(editorType === 'COLUMN') {
       const { name } = editorTargetData;
       setColName(name);
     }
-  }, [visibility]);
+  }, [editorVis]);
 
-  if (editorType === 'NEWAPP' || editorType === 'APPUPDATE') {
+  if(editorType === 'NEWAPP' || editorType === 'APPUPDATE') {
     return (
-      <div
-        style={{ visibility, position: 'absolute', background: 'lightgreen', zIndex: 10 }}
+      <Modal
+        open={editorVis}
       >
-        <button onClick={() => setEditorVis('hidden')}>X</button>
-        <section>Create new: {editorType}</section>
-        <section>
-          <label htmlFor="app-title-input">Title</label>
-          <input
-            type="text"
-            id="app-title-input"
-            name="app-title"
-            value={appTitle}
-            onChange={handleUpdateInput}
-            style={{ width: '120px' }}
-          />
-          <label htmlFor="app-com-input">Company</label>
-          <input
-            type="text"
-            id="app-com-input"
-            name="app-position"
-            value={appCompany}
-            onChange={handleUpdateInput}
-            style={{ width: '120px' }}
-          />
-          <label htmlFor="app-url-input">Lisiting URL</label>
-          <input
-            type="text"
-            id="app-url-input"
-            name="app-url"
-            value={appUrl}
-            onChange={handleUpdateInput}
-            style={{ width: '120px' }}
-          />
-          {editorType === 'NEWAPP' ? (
-            <button onClick={handleAppSubmitClose}>Create App</button>
-          ) : (
-            <button onClick={handleAppUpdateSubmitClose}>Update App</button>
-          )}
-        </section>
-      </div>
+        <Card style={{
+          outline: 0,
+          position: 'absolute',
+          width: '50vw',
+          top: '20vh',
+          left: '25vw',
+          background: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <Button
+            color="secondary"
+            onClick={() => setEditorVis(false)}
+          >
+            Close
+          </Button>
+          <section
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography
+              variant="h5"
+            >
+              {editorType === 'NEWAPP' ? 'Add New App' : 'Update App'}
+            </Typography>
+
+            <br />
+            <TextField
+              variant="outlined"
+              id="app-title-input"
+              name="app-title"
+              label="Label"
+              value={appTitle}
+              onChange={handleUpdateInput}
+              style={{ width: '40vw' }}
+            >
+            </TextField>
+            <br />
+            <TextField
+              variant="outlined"
+              id="app-com-input"
+              name="app-position"
+              label="Company"
+              value={appCompany}
+              onChange={handleUpdateInput}
+              style={{ width: '40vw' }}
+            >
+            </TextField>
+            <br />
+            <TextField
+              variant="outlined"
+              id="app-url-input"
+              name="app-url"
+              label="Posting URL"
+              value={appUrl}
+              onChange={handleUpdateInput}
+              style={{ width: '40vw' }}
+            >
+            </TextField>
+
+            {editorType === 'NEWAPP' ? (
+              <Button 
+                color="primary"
+                onClick={handleAppSubmitClose}
+              >
+                Create App
+              </Button>
+            ) : (
+              <Button 
+                color="primary" 
+                onClick={handleAppUpdateSubmitClose}
+              >
+                Update App
+              </Button>
+            )}
+          </section>
+
+        </Card>
+      </Modal>
     );
   }
 
-  if (editorType === 'COLUMN') {
+  if(editorType === 'COLUMN') {
     return (
-      <div
-        style={{ visibility, position: 'absolute', background: 'lightgreen' }}
+      <Modal
+        open={editorVis}
       >
-        <button onClick={() => setEditorVis('hidden')}>X</button>
-        <section>Edit existing: {editorType}</section>
-        <section>
-          <p>Update Column Name</p>
-          <label htmlFor="col-name-input">Name</label>
-          <input
-            type="text"
-            id="col-name-input"
-            name="col-name"
-            value={colName}
-            onChange={handleUpdateInput}
-            style={{ width: '120px' }}
-          />
-          <button onClick={handleColumnSubmitClose}>Rename Column</button>
-        </section>
-      </div>
+        <Card style={{
+          outline: 0,
+          position: 'absolute',
+          width: '50vw',
+          top: '20vh',
+          left: '25vw',
+          background: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <Button
+            color="secondary"
+            onClick={() => setEditorVis(false)}
+          >
+            Close
+          </Button>
+          <section
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography
+              variant="h5"
+            >
+              Update Column: {colName}
+            </Typography>
+            <br />
+            <TextField
+              variant="outlined"
+              id="col-name-input"
+              name="col-name"
+              label="Updated Name"
+              value={colName}
+              onChange={handleUpdateInput}
+            >
+            </TextField>
+
+            <Button 
+              color="primary"
+              onClick={handleColumnSubmitClose}
+            >
+              Submit
+            </Button>
+          </section>
+
+        </Card>
+      </Modal>
     );
   }
 

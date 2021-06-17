@@ -34,12 +34,12 @@ export default function Dashboard() {
   // Column Input State
   const [newColNameInput, setnewColNameInput] = useState('');
   // Editor modal state
-  const [editorVis, setEditorVis] = useState('hidden');
+  const [editorVis, setEditorVis] = useState(false);
   const [editorTargetData, setEditorTargetData] = useState(null);
   const [editorType, setEditorType] = useState('null');
 
   const handleModal = (data, type) => {
-    setEditorVis('visible');
+    setEditorVis(true);
     setEditorType(type);
     setEditorTargetData(data);
   };
@@ -368,7 +368,7 @@ export default function Dashboard() {
         }}>
 
           <EditorModal
-            visibility={editorVis}
+            editorVis={editorVis}
             setEditorVis={setEditorVis}
             editorTargetData={editorTargetData}
             editorType={editorType}
