@@ -1,0 +1,21 @@
+.page {
+    width: auto;
+    height: auto;
+    margin: 0px;
+    border: 5px black solid;
+    background-image: url('../../assets/noteBookImage.jpg');
+    
+}
+
+.header {
+    color: blue;
+    text-align: center;
+    margin: 60px;
+    font-family: 'Comfortaa';
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+

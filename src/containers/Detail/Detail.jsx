@@ -8,7 +8,7 @@ import { fetchQuestions } from '../../utils/questionUtils';
 import QuestionList from '../../components/questions/questionList';
 import { fetchEvents } from '../../utils/fetchEvents';
 import EventList from '../../components/events/eventList';
-
+import styles from './detail.css';
 
 const Detail = () => {
   const { id } = useParams();
@@ -32,14 +32,15 @@ const Detail = () => {
   
 
   return (
-    <>
-      <p>This is the Details Page </p>
+    <div className={styles.page} >
+      <h1 className={styles.header}>Notebook</h1>
+      
       <ContactList contacts={contacts} setContacts={setContacts}/>
       <NoteList notes={notes} setNotes={setNotes} />
       <QuestionList questions={questions} setQuestions={setQuestions} />
       <EventList events={events} setEvents={setEvents} />
       
-    </>
+    </div>
   );
 };
 

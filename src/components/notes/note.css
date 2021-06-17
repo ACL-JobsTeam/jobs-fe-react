@@ -1,0 +1,39 @@
+.notesIntro {
+    color: black;
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Comfortaa';
+    margin: 5px;
+    padding: 5px;
+}
+
+.noteInput {
+    height: 150px;
+    word-wrap: break-word;
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .noteButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    font-family: 'Comfortaa';
+}
+.listContainer {
+    display: grid;
+    grid-template-columns: 345px 345px 345px 345px 345px;
+    justify-content: space-evenly;
+    padding: 10px;
+    margin: 10px;
+}
+.listItem {
+    list-style: none;
+    justify-content: space-around;
+    margin: 5px;
+    padding: 5px;
+  
+  }
