@@ -25,7 +25,7 @@ const SingleEvent = ({ eventDate, eventName, id, index, handleDeleteEvent }) => 
     <>
         <Card className={classes.root}>
         <CardContent>
-          <Typography key={id} variant="body2" color="info.main" component="p">
+          <Typography key={id} variant="body2" color="primary" component="p">
           {new Date(eventDate).toDateString()} : {eventName}
           </Typography>
           <CardActions>
