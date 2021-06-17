@@ -1,15 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import style from './question.css';
 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+    
+  },
+  media: {
+    height: 140,
+  },
+});
 
 const SingleQuestion = ({ userQuestion, id, index, handleDeleteQuestion }) => {
- 
+  const classes = useStyles();
   return (
     <>
-      <div key={id}>
-        {userQuestion}
-      </div>
-      <button onClick={() => handleDeleteQuestion(id, index)}>delete</button>
+
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography className={style.questionContent} key={id} variant="body2" color="textSecondary" component="p">
+            {userQuestion} 
+          </Typography>
+          <CardActions>
+            <Button size="small" color="secondary" onClick={() => handleDeleteQuestion(id, index)}>
+          Delete
+            </Button>
+          </CardActions>
+        </CardContent>
+      </Card>
     </>
   );};
 

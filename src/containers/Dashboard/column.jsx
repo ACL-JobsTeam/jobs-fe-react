@@ -1,3 +1,7 @@
+import { Button, ButtonGroup, Card, Divider, IconButton, Typography } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import BuildIcon from '@material-ui/icons/Build';
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import AppList from './AppList';
@@ -15,45 +19,66 @@ export default function Column({
       {(provided, snapshot) => {
         const style = {
           border: '1px solid black',
-          height: '800px',
-          width: '150px',
+          height: '80vh',
+          width: '15vw',
           margin: '5px',
-          overflowY: 'scroll',
+          padding: '10px',
+          overflowY: 'auto',
           overflowX: 'hidden',
           ...provided.draggableProps.style,
         };
         return (
-          <div
+          <Card
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={style}
             ref={provided.innerRef}
           >
-            <section>
-              <button 
-                onClick={() => handleDeleteColumn(column.column_id)}
-                aria-label="Delete Column"
+            <div
+              style={{ 
+                display: 'flex',
+                flexDirection: 'column',
+                height: '10vh'
+              }}
+            >
+              <ButtonGroup 
+                color="primary" 
+                variant="outlined"
+                size="small"
+                style={{ alignSelf: 'flex-end' }}
               >
-                -
-              </button>
-              <button 
-                onClick={() => handleModal(column, 'COLUMN')}
-                aria-label="Edit Column"
+                <Button 
+                  onClick={() => handleDeleteColumn(column.column_id)}
+                  aria-label="Delete Column"
+                >
+                  <DeleteIcon fontSize="small" /> 
+                </Button>
+                <Button 
+                  onClick={() => handleModal(column, 'COLUMN')}
+                  aria-label="Edit Column"
+                >
+                  <BuildIcon fontSize="small" />
+                </Button>
+              </ButtonGroup>
+
+
+              <Typography 
+                variant="h5"
+                align="center"
               >
-                E
-              </button>
-
-              <p style={{ background: snapshot.isDragging ? 'red' : 'white' }}>
-                {column.name}-{column.column_id}
-              </p>
-
-              <button 
+                {column.name}
+              </Typography>
+                            
+              <IconButton
                 onClick={() => handleModal(column.column_id, 'NEWAPP')}
                 aria-label="Add Application Card"
               >
-                + App
-              </button>
-            </section>
+                <AddCircleIcon fontSize="small" />
+              </IconButton>
+
+            </div>
+            
+            <Divider />
 
             <AppList
               column={column}
@@ -61,7 +86,7 @@ export default function Column({
               handleDeleteApp={handleDeleteApp}
               handleModal={handleModal}
             />
-          </div>
+          </Card>
         );
       }}
     </Draggable>

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SingleQuestion from './singleQuestion';
 import { useParams } from 'react-router';
+import CardActions from '@material-ui/core/CardActions';
+import style from './question.css';
+import Button from '@material-ui/core/Button';
+
 
 const QuestionList = ({ questions, setQuestions }) => {
   const [userQuestion, setUserQuestion] = useState('');
@@ -48,25 +52,30 @@ const QuestionList = ({ questions, setQuestions }) => {
   };
   
   const questionItems = questions.map((question, index) => (
-    <li key={question.id}>
+    <li className={style.questionItem} key={question.id}>
       
       <SingleQuestion {...question} index={index} handleDeleteQuestion={handleDeleteQuestion}/>
     </li>
   ));
 
   return (
-    <div>
-      <p>view/add questions </p>
+    <div className={style.questionCon} >
+      <p className={style.questionsIntro} >Questions </p>
       <form onSubmit={createNewQuestion}>
-        <input placeholder="new contact" onChange={(e) => setUserQuestion(e.target.value)}/>
-        <button type="submit">click me</button>
+        <span>
+          <textarea className={style.questionInput} placeholder="Was the interviewer wearing contacts?" onChange={(e) => setUserQuestion(e.target.value)}/>
+        </span>
+        <CardActions>
+          <span  className={style.questionButton}>
+            <Button type="submit" variant="contained" size="large" color="primary">
+        Add Question&gt; 
+            </Button>
+          </span> 
+        </CardActions>
       </form>
         
-      <ul>
-      
+      <ul className={style.questionContainer}>
         {questionItems}
- 
-      
       </ul>
     </div>
   );};
