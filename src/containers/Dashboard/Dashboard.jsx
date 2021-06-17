@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import { CircularProgress, IconButton, TextField } from '@material-ui/core';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import {
@@ -32,12 +34,12 @@ export default function Dashboard() {
   // Column Input State
   const [newColNameInput, setnewColNameInput] = useState('');
   // Editor modal state
-  const [editorVis, setEditorVis] = useState('hidden');
+  const [editorVis, setEditorVis] = useState(false);
   const [editorTargetData, setEditorTargetData] = useState(null);
   const [editorType, setEditorType] = useState('null');
 
   const handleModal = (data, type) => {
-    setEditorVis('visible');
+    setEditorVis(true);
     setEditorType(type);
     setEditorTargetData(data);
   };
@@ -66,6 +68,8 @@ export default function Dashboard() {
       setcolumnsIdArray((prevArr) => {
         return [...prevArr, `${column_id}`];
       });
+
+      setnewColNameInput('');
     }
   };
 
@@ -151,32 +155,40 @@ export default function Dashboard() {
 
   // Delete application card from a swimlane. +CREDS +RESP
   const handleDeleteApp = async (appId, index, colId) => {
-    const jsonData = await fetchHandleDeleteApp(appId);
+    const confirmDelete = confirm(
+      `Are you SURE you want to delete:
+      \n${jobApps[colId][index].position} @ ${jobApps[colId][index].company}? 
+      \nThis application will be permanently removed.`
+    );
 
-    if(jsonData) {
-      setcolumnsObject((prevObj) => {
-        const modifiedColumn = prevObj[colId];
-
-        const unmodifiedArr = modifiedColumn.job_pos;
-
-        const newArr = [...unmodifiedArr];
-        newArr.splice(index, 1);
-
-        updateColumnApps(newArr, colId);
-
-        const newSubColumn = { ...modifiedColumn, job_pos: newArr };
-
-        return { ...prevObj, [colId]: newSubColumn };
-      });
-
-      setJobApps((prevObj) => {
-        const modifiedArray = prevObj[colId];
-
-        const newArr = [...modifiedArray];
-        newArr.splice(index, 1);
-
-        return { ...prevObj, [colId]: newArr };
-      });
+    if(confirmDelete){
+      const jsonData = await fetchHandleDeleteApp(appId);
+  
+      if(jsonData) {
+        setcolumnsObject((prevObj) => {
+          const modifiedColumn = prevObj[colId];
+  
+          const unmodifiedArr = modifiedColumn.job_pos;
+  
+          const newArr = [...unmodifiedArr];
+          newArr.splice(index, 1);
+  
+          updateColumnApps(newArr, colId);
+  
+          const newSubColumn = { ...modifiedColumn, job_pos: newArr };
+  
+          return { ...prevObj, [colId]: newSubColumn };
+        });
+  
+        setJobApps((prevObj) => {
+          const modifiedArray = prevObj[colId];
+  
+          const newArr = [...modifiedArray];
+          newArr.splice(index, 1);
+  
+          return { ...prevObj, [colId]: newArr };
+        });
+      }
     }
   };
 
@@ -351,60 +363,70 @@ export default function Dashboard() {
   if(columnsObject && columnsIdArray && jobApps) {
     return (
       <DragDropContext onDragEnd={onDragEnd}>
+        <div style={{
+          background: 'white',
+        }}>
 
-        <EditorModal
-          visibility={editorVis}
-          setEditorVis={setEditorVis}
-          editorTargetData={editorTargetData}
-          editorType={editorType}
-          handleRenameColumn={handleRenameColumn}
-          handleAddNewApp={handleAddNewApp}
-          handleUpdateApp={handleUpdateApp}
-        />
+          <EditorModal
+            editorVis={editorVis}
+            setEditorVis={setEditorVis}
+            editorTargetData={editorTargetData}
+            editorType={editorType}
+            handleRenameColumn={handleRenameColumn}
+            handleAddNewApp={handleAddNewApp}
+            handleUpdateApp={handleUpdateApp}
+          />
 
-        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-          <Droppable
-            droppableId="all-columns"
-            direction="horizontal"
-            type="column"
-          >
-            {(provided) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                style={{ display: 'flex', justifyContent: 'flex-start' }}
-              >
-                <ColumnsList
-                  columnsObject={columnsObject}
-                  jobApps={jobApps}
-                  columnsIdArray={columnsIdArray}
-                  handleDeleteColumn={handleDeleteColumn}
-                  handleModal={handleModal}
-                  handleDeleteApp={handleDeleteApp}
-                />
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-
-          <section style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <label htmlFor="col-new-input">Column Name</label>
-            <br />
-            <input
-              type="text"
-              id="col-new-input"
-              name="new-col-name"
-              aria-label="New Column Input Title"
-              onChange={(e) => setnewColNameInput(e.target.value)}
-            />
-            <br />
-            <button 
-              onClick={handleAddColumn}
-              aria-label="Add Column"
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Droppable
+              droppableId="all-columns"
+              direction="horizontal"
+              type="column"
             >
-                ADD COLUMN
-            </button>
-          </section>
+              {(provided) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  style={{ display: 'flex', justifyContent: 'flex-start' }}
+                >
+                  <ColumnsList
+                    columnsObject={columnsObject}
+                    jobApps={jobApps}
+                    columnsIdArray={columnsIdArray}
+                    handleDeleteColumn={handleDeleteColumn}
+                    handleModal={handleModal}
+                    handleDeleteApp={handleDeleteApp}
+                  />
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+
+            <section style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              width: '20vw',
+              alignSelf: 'center'
+            }}>
+              <TextField 
+                variant="outlined"
+                id="col-new-input"
+                name="new-col-name"
+                label="New Column Title"
+                value={newColNameInput}
+                onChange={(e) => setnewColNameInput(e.target.value)}
+              >
+              </TextField>
+              <IconButton
+                onClick={handleAddColumn}
+                aria-label="Add Column"
+              >
+                <AddCircleIcon fontSize="large" />
+              </IconButton>
+            </section>
+          </div>
+
 
         </div>
 
@@ -412,5 +434,16 @@ export default function Dashboard() {
     );
   }
 
-  return <h1>L O A D I N G</h1>;
+  return (
+    <div
+      style={{  
+        height: '90vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <CircularProgress />
+    </div>
+  );
 }

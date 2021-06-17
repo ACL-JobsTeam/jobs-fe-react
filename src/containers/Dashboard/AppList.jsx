@@ -14,10 +14,11 @@ export default function AppList({
       direction="vertical"
       type="app-list"
     >
-      {(provided) => {
+      {(provided, snapshot) => {
         const style = {
-          border: '1px solid purple',
-          minHeight: '300px',
+          height: '68vh',
+          marginTop: '10px',
+          backgroundColor: snapshot.isDraggingOver ? 'lightgrey' : 'white',
           ...provided.droppableProps.style,
         };
         return (
