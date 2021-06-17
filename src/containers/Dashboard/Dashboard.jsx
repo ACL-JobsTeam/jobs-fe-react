@@ -151,32 +151,40 @@ export default function Dashboard() {
 
   // Delete application card from a swimlane. +CREDS +RESP
   const handleDeleteApp = async (appId, index, colId) => {
-    const jsonData = await fetchHandleDeleteApp(appId);
+    const confirmDelete = confirm(
+      `Are you SURE you want to delete:
+      \n${jobApps[colId][index].position} @ ${jobApps[colId][index].company}? 
+      \nThis application will be permanently removed.`
+    );
 
-    if(jsonData) {
-      setcolumnsObject((prevObj) => {
-        const modifiedColumn = prevObj[colId];
-
-        const unmodifiedArr = modifiedColumn.job_pos;
-
-        const newArr = [...unmodifiedArr];
-        newArr.splice(index, 1);
-
-        updateColumnApps(newArr, colId);
-
-        const newSubColumn = { ...modifiedColumn, job_pos: newArr };
-
-        return { ...prevObj, [colId]: newSubColumn };
-      });
-
-      setJobApps((prevObj) => {
-        const modifiedArray = prevObj[colId];
-
-        const newArr = [...modifiedArray];
-        newArr.splice(index, 1);
-
-        return { ...prevObj, [colId]: newArr };
-      });
+    if(confirmDelete){
+      const jsonData = await fetchHandleDeleteApp(appId);
+  
+      if(jsonData) {
+        setcolumnsObject((prevObj) => {
+          const modifiedColumn = prevObj[colId];
+  
+          const unmodifiedArr = modifiedColumn.job_pos;
+  
+          const newArr = [...unmodifiedArr];
+          newArr.splice(index, 1);
+  
+          updateColumnApps(newArr, colId);
+  
+          const newSubColumn = { ...modifiedColumn, job_pos: newArr };
+  
+          return { ...prevObj, [colId]: newSubColumn };
+        });
+  
+        setJobApps((prevObj) => {
+          const modifiedArray = prevObj[colId];
+  
+          const newArr = [...modifiedArray];
+          newArr.splice(index, 1);
+  
+          return { ...prevObj, [colId]: newArr };
+        });
+      }
     }
   };
 

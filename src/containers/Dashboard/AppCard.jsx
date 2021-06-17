@@ -1,5 +1,8 @@
+import { Button, ButtonGroup, Card, Typography } from '@material-ui/core';
+
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
 
 export default function AppCard({
   job,
@@ -12,41 +15,69 @@ export default function AppCard({
     <Draggable draggableId={`${job.app_id}`} key={job.app_id} index={index}>
       {(provided) => {
         const style = {
-          border: '1px solid black',
-          height: '140px',
-          ...provided.draggableProps.style,
+          display: 'flex', 
+          justifyContent:'space-between', 
+          padding: '5px',
+          marginBottom: '5px',
+          ...provided.draggableProps.style
         };
+
         return (
-          <div
+          <Card
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={style}
             ref={provided.innerRef}
+            style={style}
           >
-            <button
-              onClick={() => handleDeleteApp(job.app_id, index, column.column_id)}
-              aria-label="Delete Application Card"
-            >
-              - App
-            </button>
-            
-            <button
-              onClick={() => handleModal({ job, column, index }, 'APPUPDATE')}
-              aria-label="Update Application Card"
-            >
-              E
-            </button>
+            <section>
+              <Typography
+                variant='h6'
+              >
+                {job.position}
+              </Typography>
+              <Typography>
+                {job.company}
+              </Typography>
+              {job.app_id}
+            </section>
 
-            <p>
-              {job.app_id}-{job.position}
-            </p>
-            <p>{job.company}</p>
-            <p>
-              <a href={job.job_url} target="_blank" rel="noreferrer">
-                {job.job_url}
-              </a>
-            </p>
-          </div>
+            <ButtonGroup 
+              color="primary" 
+              variant="outlined"
+              size="small" 
+              orientation="vertical"
+            >
+              <Button 
+                aria-label="Delete Application Card"
+                onClick={() => handleDeleteApp(job.app_id, index, column.column_id)}
+              >
+                  Delete
+              </Button>
+              <Button 
+                aria-label="Update Application Card"
+                onClick={() => handleModal({ job, column, index }, 'APPUPDATE')}
+              >
+                  Update
+              </Button>
+              <Button>
+                <Link
+                  style={{ textDecoration: 'none' }} 
+                  to={`/details/${job.app_id}`}>Details</Link>
+              </Button>
+              <Button>
+                <a 
+                  href={job.job_url} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  style={{ textDecoration: 'none' }} 
+                >
+                  Posting
+                </a>
+              </Button>
+            </ButtonGroup>
+        
+          </Card>
+
         );
       }}
     </Draggable>

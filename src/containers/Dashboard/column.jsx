@@ -16,7 +16,7 @@ export default function Column({
         const style = {
           border: '1px solid black',
           height: '800px',
-          width: '150px',
+          width: '250px',
           margin: '5px',
           overflowY: 'scroll',
           overflowX: 'hidden',
