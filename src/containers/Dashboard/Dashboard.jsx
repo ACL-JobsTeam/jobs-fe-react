@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { IconButton, TextField } from '@material-ui/core';
+import { CircularProgress, IconButton, TextField } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -434,5 +434,16 @@ export default function Dashboard() {
     );
   }
 
-  return <h1>L O A D I N G</h1>;
+  return (
+    <div
+      style={{  
+        height: '90vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <CircularProgress />
+    </div>
+  );
 }
