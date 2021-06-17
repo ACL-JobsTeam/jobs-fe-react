@@ -66,8 +66,8 @@ const EventList = ({ events, setEvents }) => {
       <p className={style.eventsIntro}>Events</p>
       <form onSubmit={createNewEvent}>
         <span>
-          <input className={style.eventCal} type="date" placeholder="new date" onChange={(e) => setEventDate(e.target.value)}/>
-          <textarea className={style.eventInput} placeholder="Got lost in interviewers eyes" onChange={(e) => setEventName(e.target.value)}/>
+          <input className={style.eventCal} type="date" onChange={(e) => setEventDate(e.target.value)}/>
+          <textarea className={style.eventInput} placeholder="First Interview, went well, hoping for callback" onChange={(e) => setEventName(e.target.value)}/>
         </span>
         
         <CardActions>

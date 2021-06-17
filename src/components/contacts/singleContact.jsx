@@ -26,7 +26,7 @@ const SingleContact = ({ companyContact, id, index, handleDeleteContact }) => {
     <>
 <Card className={classes.root}>
         <CardContent>
-          <Typography className={style.contactContent} key={id} variant="body2" color="textSecondary" component="p">
+          <Typography className={style.contactContent} key={id} variant="body2" color="primary" component="p">
             {companyContact} 
           </Typography>
           <CardActions>

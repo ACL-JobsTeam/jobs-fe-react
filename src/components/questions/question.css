@@ -26,8 +26,8 @@
 }
 .questionContainer {
     display: grid;
-    grid-template-columns: 345px 345px 345px 345px 345px;
-    justify-content: space-evenly;
+    grid-template-columns: repeat(auto-fit, 345px);
+    justify-content: center;
     padding: 0px;
     margin: 0px;
     white-space: pre-wrap;
