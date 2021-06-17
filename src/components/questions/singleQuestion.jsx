@@ -25,7 +25,7 @@ const SingleQuestion = ({ userQuestion, id, index, handleDeleteQuestion }) => {
 
       <Card className={classes.root}>
         <CardContent>
-          <Typography className={style.questionContent} key={id} variant="body2" color="textSecondary" component="p">
+          <Typography className={style.questionContent} key={id} variant="body2" color="info.main" component="p">
             {userQuestion} 
           </Typography>
           <CardActions>

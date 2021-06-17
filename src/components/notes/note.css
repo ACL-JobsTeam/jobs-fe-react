@@ -27,7 +27,7 @@
 .listContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(345px, 1fr));
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 0px;
     margin: 0px;
     white-space: pre-wrap;

@@ -26,7 +26,7 @@ const SingleNote = ({ userNote, id, index, handleDeleteNote }) => {
      
       <Card className={classes.root}>
         <CardContent>
-          <Typography className={style.noteContent} key={id} variant="body2" color="textSecondary" component="p">
+          <Typography className={style.noteContent} key={id} variant="body2" color="info.main" component="p">
             {userNote} 
           </Typography>
           <CardActions>
