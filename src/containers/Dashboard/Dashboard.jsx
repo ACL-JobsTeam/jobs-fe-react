@@ -25,7 +25,7 @@ import {
 import ColumnsList from './ColumnsList';
 import EditorModal from './EditorModal';
 
-export default function Dashboard() {
+export default function Dashboard({ user }) {
   const [columnsObject, setcolumnsObject] = useState(null);
   const [columnsIdArray, setcolumnsIdArray] = useState(null);
   const [jobApps, setJobApps] = useState(null);
@@ -369,6 +369,7 @@ export default function Dashboard() {
             background: 'white',
           }}
         >
+          <Header user={user} />
           <EditorModal
             editorVis={editorVis}
             setEditorVis={setEditorVis}
