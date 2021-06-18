@@ -18,6 +18,8 @@ export default function AppList({
         const style = {
           height: '68vh',
           marginTop: '10px',
+          overflowY: 'auto',
+          overflowX: 'hidden',
           backgroundColor: snapshot.isDraggingOver ? 'lightgrey' : 'white',
           ...provided.droppableProps.style,
         };

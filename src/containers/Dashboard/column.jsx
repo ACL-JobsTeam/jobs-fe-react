@@ -19,12 +19,10 @@ export default function Column({
       {(provided, snapshot) => {
         const style = {
           border: '1px solid black',
-          height: '80vh',
+          height: '85vh',
           width: '15vw',
-          margin: '5px',
+          margin: '10px',
           padding: '10px',
-          overflowY: 'auto',
-          overflowX: 'hidden',
           ...provided.draggableProps.style,
         };
         return (
@@ -38,7 +36,9 @@ export default function Column({
               style={{ 
                 display: 'flex',
                 flexDirection: 'column',
-                height: '10vh'
+                height: '10vh',
+                backgroundColor: '#B3B3B3',
+                padding: '5px'
               }}
             >
               <ButtonGroup 
