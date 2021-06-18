@@ -21,25 +21,25 @@ export default function App() {
           credentials: 'include',
         }
       );
-      if(res.status === 200) {
+      if (res.status === 200) {
         const userdata = await res.json();
 
         setUser(userdata.user.userName);
         setLoading('resolved');
       }
-      if(res.status !== 200) {
+      if (res.status !== 200) {
         setLoading('rejected');
       }
     };
 
     fetchUser();
-    if(!user && loading === 'rejected') {
+    if (!user && loading === 'rejected') {
       return <Redirect to="/" />;
     }
-    if(user && loading === 'resolved') {
+    if (user && loading === 'resolved') {
       return (
         <Route exact path={path} {...props}>
-          <Component user={user}/>
+          <Component user={user} />
         </Route>
       );
     }

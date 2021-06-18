@@ -17,9 +17,9 @@ const Search = ({ user }) => {
   const pageWindowSize = 10;
 
   useEffect(() => {
-    if(selectedCompany === '') {
+    if (selectedCompany === '') {
       fetchAllJobs().then(setJobs);
-    } else if(selectedCompany.length) {
+    } else if (selectedCompany.length) {
       fetchJobsByCompany(selectedCompany).then(setJobs).then(setCurrentPage(1));
     }
   }, [selectedCompany]);
@@ -41,8 +41,8 @@ const Search = ({ user }) => {
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
 
-    if(filteredJobs.length === 0) return jobs.slice(startIndex, endIndex);
-    else if(filteredJobs) return filteredJobs.slice(startIndex, endIndex);
+    if (filteredJobs.length === 0) return jobs.slice(startIndex, endIndex);
+    else if (filteredJobs) return filteredJobs.slice(startIndex, endIndex);
   };
 
   const getPageGroup = () => {
@@ -62,7 +62,7 @@ const Search = ({ user }) => {
 
   const searchSubmit = (e) => {
     e.preventDefault();
-    if(searchTerm === '') return;
+    if (searchTerm === '') return;
     const filtered = jobs.filter((job) =>
       job.title.toLowerCase().includes(searchTerm.toLowerCase())
     );

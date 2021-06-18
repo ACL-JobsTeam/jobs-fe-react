@@ -42,13 +42,12 @@ const Login = ({ setLoading }) => {
     return <Redirect to="/dashboard" />;
   }
   if (err === 'invalid') {
-    setErr('incorrect username or password please ty again');
+    setErr('Incorrect username or password please try again!');
   }
 
   return (
     <div className={style.loginCtn}>
       <div className={style.wave}></div>
-
       <div className={style.header}>
         <h2 className={style.logo}>aspir.io</h2>
         <div className={style.subtitle}>

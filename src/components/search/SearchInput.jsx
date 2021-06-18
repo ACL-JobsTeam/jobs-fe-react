@@ -72,7 +72,7 @@ const SearchInput = ({
     <div className={style.searchHeader}>
       <form className={style.companySection}>
         {companies.map((company) => (
-          <label key={company.name} className={company.name}>
+          <label key={company.name} className={style[company.name]}>
             {company.name}
             <input
               type="radio"
@@ -104,7 +104,7 @@ const SearchInput = ({
           />
         </button>
       </form>
-      <div className="reset-container">
+      <div className={style.resetContainer}>
         <button onClick={companyReset} className={style.resetButton}>
           Reset
         </button>
