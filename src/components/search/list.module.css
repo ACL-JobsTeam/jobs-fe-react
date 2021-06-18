@@ -1,0 +1,239 @@
+.searchHeader {
+  display: flex;
+  height: 200px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.companySection {
+  display: flex;
+  width: 84%;
+  height: 100px;
+  justify-content: space-around;
+  align-self: center;
+  align-items: center;
+}
+
+.companySection label {
+  display: flex;
+  width: 120px;
+  height: 50px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 8px 8px 8px grey;
+  border-radius: 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.lyft {
+  background-color: hotpink;
+  color: white;
+}
+.lyft:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.airbnb {
+  background-color: rgb(233, 31, 31);
+  color: white;
+}
+
+.airbnb:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.stripe {
+  background-color: rgb(45, 92, 221);
+  color: white;
+}
+
+.stripe:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.twitch {
+  background-color: rgb(143, 2, 236);
+  color: white;
+}
+
+.twitch:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.coinbase {
+  background-color: rgb(0, 102, 255);
+  color: white;
+}
+
+.coinbase:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.discord {
+  background-color: rgb(91, 91, 235);
+  color: white;
+}
+
+.discord:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.github {
+  background-color: black;
+  color: white;
+}
+
+.github:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.reddit {
+  background-color: red;
+  color: white;
+}
+
+.reddit:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.strava {
+  background-color: rgb(202, 27, 27);
+  color: white;
+}
+
+.strava:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.glassdoor {
+  background-color: yellowgreen;
+  color: white;
+}
+
+.glassdoor:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.netlify {
+  background-color: rgb(27, 143, 172);
+  color: white;
+}
+
+.netlify:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.robinhood {
+  background-color: rgb(56, 230, 172);
+  color: white;
+}
+
+.robinhood:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.doordash {
+  background-color: tomato;
+  color: white;
+}
+
+.doordash:hover {
+  transform: scale(1.2, 1.1);
+}
+
+.searchButton {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.007);
+  width: 55px;
+  border: none;
+  margin-top: 5px;
+}
+
+.searchButton:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.searchImg {
+  display: flex;
+  width: 40px;
+  height: 40px;
+}
+
+.resetButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 30px;
+  border-radius: 10%;
+  background-color: rgb(92, 92, 218);
+  color: white;
+  box-shadow: 10px 10px 10px grey;
+}
+
+.resetButton:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.resetContainer {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px;
+}
+
+.paginationItem {
+  background-color: #fff;
+  border: 2px solid #666;
+  padding: 10px 15px;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  position: relative;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.paginationItem span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+  background: #fff;
+  border: none;
+  padding: 10px;
+  color: blue;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.paginationItem.active {
+  border: 1px solid #888;
+  color: #888;
+  pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}

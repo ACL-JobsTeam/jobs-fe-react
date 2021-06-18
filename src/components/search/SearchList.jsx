@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,8 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Stripe from '../../assets/stripe.png';
-import jobs from './Joblistings';
+import { imageFinder } from '../../utils/imageUtil';
 
 const useStyles = makeStyles({
   root: {
@@ -21,35 +21,41 @@ const useStyles = makeStyles({
   },
   container: {
     width: '100%',
-    height: '100%',
+    height: '70%',
+    top: '100px',
     display: 'grid',
     gridTemplateColumns: '450px 450px 450px',
     gridTemplateRows: '450px 450px 450px',
     justifyContent: 'space-evenly',
   },
   content: {
-    height: '100px',
+    height: '70px',
     overflow: 'hidden',
   },
 });
 
-const SearchList = () => {
+const SearchList = ({ getPaginatedData }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      {jobs.map((job) => (
-        <Card className={classes.root} key={job.internal_job_id}>
+      {getPaginatedData().map((job) => (
+        <Card className={classes.root} key={job.id}>
           <CardActionArea>
             <CardMedia
               component="img"
               alt="job listing"
               height="140"
-              image={Stripe}
-              title="Contemplative Reptile"
+              image={imageFinder(job.company)}
+              title="Job Listing"
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h3">
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h3"
+                className={classes.content}
+              >
                 {job.title}
               </Typography>
               <Typography
@@ -58,22 +64,37 @@ const SearchList = () => {
                 component="p"
                 className={classes.content}
               >
-                {job.content}
+                {job.location}
               </Typography>
             </CardContent>
           </CardActionArea>
           <CardActions>
             <Button size="small" color="primary">
-              Save
+              save
             </Button>
             <Button size="small" color="primary">
-              Learn More
+              <a href={job.url}>Learn More</a>
             </Button>
           </CardActions>
         </Card>
       ))}
     </div>
   );
+};
+
+SearchList.propTypes = {
+  jobs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      company: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      post_date: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  getPaginatedData: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
 };
 
 export default SearchList;

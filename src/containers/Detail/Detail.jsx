@@ -18,7 +18,7 @@ const Detail = ({ user }) => {
   const [notes, setNotes] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [events, setEvents] = useState([]);
-  const [currentUser, setCurrentUser] = useState('')
+  
   
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Detail = ({ user }) => {
       .then(setContacts);
     fetchEvents(id)
       .then(setEvents);
-      setCurrentUser(currentUser)
+    
   }, []);
 
   
@@ -39,7 +39,7 @@ const Detail = ({ user }) => {
     <>
       <div className={styles.page} >
         
-        <Header user={user} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+        <Header user={user} />
         <h1 className={styles.header}>Notebook</h1>
       
         <EventList events={events} setEvents={setEvents} />
