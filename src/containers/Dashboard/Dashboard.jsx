@@ -3,6 +3,7 @@ import { CircularProgress, IconButton, TextField } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import Header from '../../components/header/header';
 import {
   parseNewApplicationsObject,
   parseNewColumnArray,
@@ -427,6 +428,7 @@ export default function Dashboard() {
           </div>
         </div>
       </DragDropContext>
+    
     );
   }
 

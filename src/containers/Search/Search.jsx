@@ -1,10 +1,11 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
+import Header from '../../components/header/header';
 import SearchComponent from '../../components/search/SearchComponent';
 import { fetchAllJobs, fetchJobsByCompany } from '../../utils/searchUtils';
 
-const Search = () => {
+const Search = ({ user }) => {
   const [jobs, setJobs] = useState([]);
   const [pages] = useState(jobs.length / 18);
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,6 +75,7 @@ const Search = () => {
 
   return (
     <div>
+      <Header user={user} />
       <SearchComponent
         jobs={jobs}
         previous={goToPreviousPage}

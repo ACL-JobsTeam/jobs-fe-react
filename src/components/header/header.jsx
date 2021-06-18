@@ -12,13 +12,6 @@ import Card from '@material-ui/core/Card';
 const Header = ({ user }) => {
   
 
-
- 
-
-
-
-    
-
   return (
     <div>
       <Card className={style.headerContainer}>
