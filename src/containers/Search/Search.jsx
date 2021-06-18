@@ -7,7 +7,7 @@ const Search = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(async () => {
-    fetchAllJobs.then(setJobs).then(setLoading);
+    fetchAllJobs().then(setJobs).then(setLoading);
   }, [jobs]);
 
   return (
