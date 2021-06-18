@@ -42,7 +42,7 @@ const Login = ({ setLoading }) => {
     return <Redirect to="/dashboard" />;
   }
   if (err === 'invalid') {
-    setErr('incorrect username or password please ty again');
+    setErr('Incorrect username or password please try again!');
   }
 
   return (

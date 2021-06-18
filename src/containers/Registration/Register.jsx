@@ -45,10 +45,10 @@ const Register = () => {
     return <Redirect to={'/'} />;
   }
   if (usernameErr === 'username invalid') {
-    setUsernameErr('sorry that username is taken');
+    setUsernameErr('Sorry that username is taken!');
   }
   if (emailErr === 'email invalid') {
-    setEmailErr('sorry that email is taken');
+    setEmailErr('Sorry that email is taken!');
   }
   return (
     <div className={style.loginCtn}>

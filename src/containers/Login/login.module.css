@@ -45,9 +45,17 @@ body {
 .nav {
   display: flex;
   justify-content: flex-end;
+  flex-direction: column;
   width: 300px;
   height: 100px;
   margin-left: 900px;
+  color: red;
+}
+
+.nav span {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 20px;
 }
 
 .nav a {
