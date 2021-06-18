@@ -27,12 +27,12 @@ const Header = ({ user }) => {
             </Link>
             <Link component={RouterLink} to="/search">
               <span className={style.link}>
-          search
+          Search
               </span>
             </Link>
-            <Link component={RouterLink} to="/dashboard">
+            <Link component={RouterLink} to="/">
               <span className={style.link}>
-          sign out
+          Sign out
               </span>
             </Link>
           </Typography>
