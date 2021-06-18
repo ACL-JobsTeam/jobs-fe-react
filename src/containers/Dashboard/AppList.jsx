@@ -1,5 +1,5 @@
 import React from 'react';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 import AppCard from './AppCard';
 
 export default function AppList({
@@ -40,8 +40,6 @@ export default function AppList({
                   />
                 );
               })}
-
-            {!jobs && <p>---No jobs---</p>}
 
             {/* Required by RBDnD Library */}
             {provided.placeholder}
