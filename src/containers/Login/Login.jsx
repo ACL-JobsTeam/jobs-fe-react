@@ -48,7 +48,6 @@ const Login = ({ setLoading }) => {
   return (
     <div className={style.loginCtn}>
       <div className={style.wave}></div>
-
       <div className={style.header}>
         <h2 className={style.logo}>aspir.io</h2>
         <div className={style.subtitle}>

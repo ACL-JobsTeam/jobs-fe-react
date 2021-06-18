@@ -4,7 +4,7 @@ body {
 }
 
 .box {
-  position: absolute;
+  position: fixed;
   top: 0;
   transform: rotate(70deg);
   left: 0;
@@ -12,11 +12,11 @@ body {
 }
 
 .wave {
-  margin-left: -50em;
-  width: 90vw;
+  margin-left: -55em;
+  width: 95vw;
   height: 100vw;
-  border-radius: 33%;
-  animation: rotate 7500ms infinite linear;
+  border-radius: 43%;
+  animation: rotate 6000ms infinite linear;
   background-color: #77daff;
   margin-top: -15em;
   transform: rotate(70deg);
@@ -124,6 +124,10 @@ body {
   text-shadow: 10px grey;
 }
 
+.registerForm h3 {
+  display: flex;
+}
+
 .signupForm input {
   display: flex;
   align-items: center;
@@ -147,7 +151,7 @@ body {
 
 .login {
   width: 10vh;
-  height: 2vh;
+  height: 3vh;
   border-radius: 5px;
   box-shadow: 10px 10px 10px grey;
   background-color: #37e0b6;
@@ -156,7 +160,7 @@ body {
   margin-left: 20px;
 }
 
-.register-form {
+.registerForm {
   display: flex;
   height: 40vh;
   width: 32vh;
@@ -180,7 +184,13 @@ body {
 }
 
 .error {
+  position: fixed;
+  top: 23vh;
+  left: 65%;
   z-index: 1;
   width: 30vh;
   height: 30vh;
+  margin: 10px;
+  font-family: 'Comfortaa';
+  color: red;
 }

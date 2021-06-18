@@ -53,7 +53,6 @@ const Register = () => {
   return (
     <div className={style.loginCtn}>
       <div className={style.wave}></div>
-
       <div className={style.header}>
         <h2 className={style.logo}>aspir.io</h2>
         <div className={style.subtitle}>
@@ -65,10 +64,11 @@ const Register = () => {
         </div>
       </div>
       <div className={style.nav}>
-        {usernameErr}
-        {emailErr}
+        <span>{usernameErr}</span>
+        <br />
+        <span>{emailErr}</span>
       </div>
-      <form onSubmit={submit} className={style.signupForm}>
+      <form onSubmit={submit} className={`${style.registerForm}`}>
         <section className={style.userInputs}>
           <h3>Registration</h3>
           <div>
@@ -100,7 +100,7 @@ const Register = () => {
               className={style.passwordInput}
             />
           </div>
-          <button type="submit" className="register">
+          <button type="submit" className={style.register}>
             Register
           </button>
         </section>
