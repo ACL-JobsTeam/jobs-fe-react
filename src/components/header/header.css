@@ -1,0 +1,25 @@
+.headerContainer {
+        padding: 0px;
+        margin: 0px;
+    
+}
+
+
+.headerTypo {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    text-align: center;
+    color:black
+}
+
+.userName {
+    font-size: 30px;
+    color: black;
+    font-family: 'Comfortaa';
+}
+
+.link {
+    font-size: 30px;
+    font-family: 'Comfortaa';
+    color: black;
+}

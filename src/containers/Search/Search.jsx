@@ -1,10 +1,11 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
+import Header from '../../components/header/header';
 import SearchComponent from '../../components/search/SearchComponent';
 import { fetchAllJobs, fetchJobsByCompany } from '../../utils/searchUtils';
 
-const Search = () => {
+const Search = ({ user }) => {
   const [jobs, setJobs] = useState([]);
   const [pages] = useState(jobs.length / 18);
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,9 +17,9 @@ const Search = () => {
   const pageWindowSize = 10;
 
   useEffect(() => {
-    if (selectedCompany === '') {
+    if(selectedCompany === '') {
       fetchAllJobs().then(setJobs);
-    } else if (selectedCompany.length) {
+    } else if(selectedCompany.length) {
       fetchJobsByCompany(selectedCompany).then(setJobs).then(setCurrentPage(1));
     }
   }, [selectedCompany]);
@@ -40,8 +41,8 @@ const Search = () => {
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
 
-    if (filteredJobs.length === 0) return jobs.slice(startIndex, endIndex);
-    else if (filteredJobs) return filteredJobs.slice(startIndex, endIndex);
+    if(filteredJobs.length === 0) return jobs.slice(startIndex, endIndex);
+    else if(filteredJobs) return filteredJobs.slice(startIndex, endIndex);
   };
 
   const getPageGroup = () => {
@@ -61,7 +62,7 @@ const Search = () => {
 
   const searchSubmit = (e) => {
     e.preventDefault();
-    if (searchTerm === '') return;
+    if(searchTerm === '') return;
     const filtered = jobs.filter((job) =>
       job.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -74,6 +75,7 @@ const Search = () => {
 
   return (
     <div>
+      <Header user={user} />
       <SearchComponent
         jobs={jobs}
         previous={goToPreviousPage}
