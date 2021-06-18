@@ -1,11 +1,11 @@
-.search-header {
+.searchHeader {
   display: flex;
   height: 200px;
   width: 100%;
   flex-direction: column;
 }
 
-.company-section {
+.companySection {
   display: flex;
   width: 84%;
   height: 100px;
@@ -14,7 +14,7 @@
   align-items: center;
 }
 
-.company-section label {
+.companySection label {
   display: flex;
   width: 120px;
   height: 50px;
@@ -148,7 +148,7 @@ input[type='radio'] {
   transform: scale(1.2, 1.1);
 }
 
-.search-button {
+.searchButton {
   display: flex;
   background-color: rgba(255, 255, 255, 0.007);
   width: 55px;
@@ -156,17 +156,17 @@ input[type='radio'] {
   margin-top: 5px;
 }
 
-.search-button:hover {
+.searchButton:hover {
   transform: scale(1.1, 1.1);
 }
 
-.search-img {
+.searchImg {
   display: flex;
   width: 40px;
   height: 40px;
 }
 
-.reset-button {
+.resetButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,11 +178,11 @@ input[type='radio'] {
   box-shadow: 10px 10px 10px grey;
 }
 
-.reset-button:hover {
+.resetButton:hover {
   transform: scale(1.1, 1.1);
 }
 
-.reset-container {
+.resetContainer {
   display: flex;
   justify-content: center;
   margin: 10px;

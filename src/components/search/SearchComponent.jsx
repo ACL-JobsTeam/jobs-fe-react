@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SearchInput from './SearchInput';
 import SearchList from './SearchList';
-import './list.css';
+import style from './list.module.css';
 
 const SearchComponent = ({
   jobs,
@@ -21,7 +21,7 @@ const SearchComponent = ({
   companyReset,
 }) => {
   return (
-    <div className="search-component">
+    <div className={style.searchComponent}>
       <SearchInput
         companyFilter={companyFilter}
         selectedCompany={selectedCompany}
@@ -34,7 +34,7 @@ const SearchComponent = ({
         getPaginatedData={getPaginatedData}
         searchTerm={searchTerm}
       />
-      <section className="pagination">
+      <section className={style.pagination}>
         <button
           onClick={previous}
           className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
@@ -45,7 +45,7 @@ const SearchComponent = ({
           <button
             key={index}
             onClick={changePage}
-            className={`paginationItem ${
+            className={`${style.paginationItem} ${
               currentPage === item ? 'active' : null
             }`}
           >
@@ -54,7 +54,7 @@ const SearchComponent = ({
         ))}
         <button
           onClick={next}
-          className={`next ${currentPage === pages ? 'disabled' : ''}`}
+          className={`${style.next} ${currentPage === pages ? 'disabled' : ''}`}
         >
           next
         </button>

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import './list.css';
+import style from './list.module.css';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -69,8 +69,8 @@ const SearchInput = ({
   const classes = useStyles();
 
   return (
-    <div className="search-header">
-      <form className="company-section">
+    <div className={style.searchHeader}>
+      <form className={style.companySection}>
         {companies.map((company) => (
           <label key={company.name} className={company.name}>
             {company.name}
@@ -97,15 +97,15 @@ const SearchInput = ({
           onChange={(e) => handleSearchTerm(e)}
           className={classes.searchBar}
         />
-        <button type="submit" value="Submit" className="search-button">
+        <button type="submit" value="Submit" className={style.searchButton}>
           <img
             src="https://img.icons8.com/pastel-glyph/64/000000/search--v3.png"
-            className="search-img"
+            className={style.searchImg}
           />
         </button>
       </form>
       <div className="reset-container">
-        <button onClick={companyReset} className="reset-button">
+        <button onClick={companyReset} className={style.resetButton}>
           Reset
         </button>
       </div>
