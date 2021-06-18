@@ -4,7 +4,7 @@ body {
 }
 
 .box {
-  position: fixed;
+  position: absolute;
   top: 0;
   transform: rotate(70deg);
   left: 0;
@@ -12,14 +12,16 @@ body {
 }
 
 .wave {
-  position: absolute;
-  width: 1600px;
-  height: 1800px;
-  margin-left: -700px;
-  margin-top: -800px;
-  border-radius: 43%;
+  margin-left: -50em;
+  width: 90vw;
+  height: 100vw;
+  border-radius: 33%;
   animation: rotate 7500ms infinite linear;
   background-color: #77daff;
+  margin-top: -15em;
+  transform: rotate(70deg);
+  position: fixed;
+  z-index: 0;
 }
 
 @keyframes rotate {
@@ -36,8 +38,7 @@ body {
   width: auto;
   height: 100vh;
   margin: 0;
-  overflow-x: hidden;
-  justify-content: center;
+  justify-content: space-between;
   background-color: rgba(238, 200, 142, 0.692);
 }
 
@@ -82,6 +83,7 @@ body {
 
 .header {
   display: flex;
+  position: fixed;
   justify-content: center;
   flex-direction: column;
   width: 400px;
@@ -90,18 +92,20 @@ body {
   margin-left: 100px;
 }
 
-.signupForm {
+.signupForm,
+.registerForm {
   position: relative;
   top: 30%;
   right: 20%;
   display: flex;
-  width: 500px;
+  width: 275px;
   height: 300px;
   padding: 0;
   box-shadow: 10px 10px 10px 10px grey;
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  max-width: 500px;
   border-radius: 10px;
   z-index: 1;
   background-color: rgb(231, 226, 226);
