@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { CircularProgress, IconButton, TextField } from '@material-ui/core';
+import { Card, CircularProgress, IconButton, TextField } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -364,12 +364,12 @@ export default function Dashboard({ user }) {
   if (columnsObject && columnsIdArray && jobApps) {
     return (
       <DragDropContext onDragEnd={onDragEnd}>
+        <Header user={user} />
         <div
           style={{
-            background: 'white',
+            height: '93vh'
           }}
         >
-          <Header user={user} />
           <EditorModal
             editorVis={editorVis}
             setEditorVis={setEditorVis}
@@ -380,7 +380,7 @@ export default function Dashboard({ user }) {
             handleUpdateApp={handleUpdateApp}
           />
 
-          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-start', backgroundColor: '#1D4C84', height: '100%' }}>
             <Droppable
               droppableId="all-columns"
               direction="horizontal"
@@ -405,13 +405,14 @@ export default function Dashboard({ user }) {
               )}
             </Droppable>
 
-            <section
+            <Card
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                width: '20vw',
+                width: '10vw',
                 alignSelf: 'center',
+                padding: '8px'
               }}
             >
               <TextField
@@ -425,7 +426,7 @@ export default function Dashboard({ user }) {
               <IconButton onClick={handleAddColumn} aria-label="Add Column">
                 <AddCircleIcon fontSize="large" />
               </IconButton>
-            </section>
+            </Card>
           </div>
         </div>
       </DragDropContext>

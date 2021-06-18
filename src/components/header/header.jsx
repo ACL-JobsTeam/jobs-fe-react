@@ -11,7 +11,16 @@ import Card from '@material-ui/core/Card';
 
 const Header = ({ user }) => {
   
-
+  const handleSignOut = async () => {
+    const data = await fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/logout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+  };
+  
   return (
     <div>
       <Card className={style.headerContainer}>
@@ -30,7 +39,9 @@ const Header = ({ user }) => {
           Search
               </span>
             </Link>
-            <Link component={RouterLink} to="/">
+            <Link 
+              onClick={handleSignOut}
+              component={RouterLink} to="/">
               <span className={style.link}>
           Sign out
               </span>
