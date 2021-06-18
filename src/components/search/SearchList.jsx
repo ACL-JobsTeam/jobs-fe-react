@@ -37,6 +37,20 @@ const useStyles = makeStyles({
 const SearchList = ({ getPaginatedData }) => {
   const classes = useStyles();
 
+  const handleSaveJob = async ({ title, company, url }) => {
+    const savedJob = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/api/v1/jobs/savejob`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ title, company, url }),
+      }
+    );
+  };
+
   return (
     <div className={classes.container}>
       {getPaginatedData().map((job) => (
@@ -69,7 +83,11 @@ const SearchList = ({ getPaginatedData }) => {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="small" color="primary">
+            <Button
+              onClick={() => handleSaveJob(job)}
+              size="small"
+              color="primary"
+            >
               save
             </Button>
             <Button size="small" color="primary">

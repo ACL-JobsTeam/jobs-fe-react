@@ -50,6 +50,7 @@ export default function Column({
                 <Button 
                   onClick={() => handleDeleteColumn(column.column_id)}
                   aria-label="Delete Column"
+                  disabled={column.is_archive ? true : false}
                 >
                   <DeleteIcon fontSize="small" /> 
                 </Button>

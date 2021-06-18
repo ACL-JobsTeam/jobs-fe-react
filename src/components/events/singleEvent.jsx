@@ -11,22 +11,17 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    
   },
-  media: {
-    height: 140,
-  },
-
 });
 
 const SingleEvent = ({ eventDate, eventName, id, index, handleDeleteEvent }) => {
   const classes = useStyles();
   return (
     <>
-        <Card className={classes.root}>
+      <Card className={classes.root}>
         <CardContent>
           <Typography key={id} variant="body2" color="primary" component="p">
-          {new Date(eventDate).toDateString()} : {eventName}
+            {new Date(eventDate).toDateString()} : {eventName}
           </Typography>
           <CardActions>
             <Button size="small" color="secondary" onClick={() => handleDeleteEvent(id, index)}>

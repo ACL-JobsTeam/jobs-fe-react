@@ -39,7 +39,7 @@ export default function App() {
     if (user && loading === 'resolved') {
       return (
         <Route exact path={path} {...props}>
-          <Component />
+          <Component user={user} />
         </Route>
       );
     }
